@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{1\040Caffe\040}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{1.1 Caffe优点：}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{1.2 代码层次}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{2\040CNN}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{2.1 CNN优点：}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{2.2 CNN组成：}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{2.3 CNN网络配置文件：}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{3\040AlexNet}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{3.1 网络结构}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{3.2 在数据与模型上的技巧}{section.3}% 10

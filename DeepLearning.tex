@@ -238,7 +238,7 @@
 \end{figure}
 
 
-\section{方案}
+\section{可用方案}
 \subsection{开源软件}
 \begin{description}
 \item[Caffe] Caffe是一个清晰而高效的深度学习框架，由表达式、速度和模块化组成，其作者是博士毕业于UC Berkeley的贾扬清。它具有有开放性架构、扩展代码、速度与社区化的优点。Caffe是纯粹的C++/CUDA架构，支持命令行、Python和MATLAB接口，而且可以在CPU和GPU直接无缝切换。
@@ -265,17 +265,10 @@
 %\label{fig:framework}
 \end{figure}
 
-\item[VGGNet] VGGNet\cite{simonyan2013deep}是Visual Geometry Group，University of Oxford在ILSVRC 2013分类上使用的模型，结合了两种深度框架：the deep Fisher vector network 和 the deep convolutional network。
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.3\textwidth]{vggnet1}
-\caption{VGGNet}
-%\label{fig:framework}
-\end{figure}
 
 \item[OverFeat] OverFeat\cite{sermanet2013overfeat}%\footnote{OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks}
 由CILVR Lab，New York University开发的，基于卷积网络的图像识别和特征提取系统。
-OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 2013分类、定位与检测竞赛，应用了在卷积网络上的多尺度和扫描框方法。
+OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 2013分类、定位与检测竞赛。在Overfeat主要展示了多尺度和扫描窗口可以有效应用在卷积网络上。而且，不同的任务可以通过一个共享的学习网络来实现。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{overfeat}
@@ -283,7 +276,7 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[NIN] NIN（Network In Network）\cite{Lin:2013aa}是Learn­ing and Vi­sion Re­search Group，	Na­tion­al Uni­ver­si­ty of Sin­ga­pore所使用的深度学习框架。其中，他们团队提出``adaptive non-parametric rectification''方法来提高准确率。 
+\item[NIN] NIN（Network In Network）\cite{Lin:2013aa}是Learn­ing and Vi­sion Re­search Group，Na­tion­al Uni­ver­si­ty of Sin­ga­pore所使用的深度学习框架。他们团队通过在深度网络中建立更复杂的微型神经网络来提取数据。NIN网络包含了三个多元卷积层和一个全局平局pooling层。另外，他们团队提出``adaptive non-parametric rectification''方法来提高准确率。 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{NIN}
@@ -291,7 +284,9 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[GoogLeNet] GoogLeNet\cite{simonyan2014very}是Google团队在ILSVRC 2014上，使用的深度学习网络模型。
+\item[GoogLeNet] GoogLeNet\cite{simonyan2014very}是Google团队在ILSVRC 2014上，使用的深度学习网络模型，来完成分类和检测的任务。在GoogLeNet模型中，提出了Inception模型，即采用不同尺度的卷积核来处理问题。另外，该网络最大的特点就是提升了计算资源的利用率，即在网络所需计算不变的前提下，提升了网络的宽度和深度。最后，使用了基于Hebbian Principle和多尺寸处理来提高准确率。GoogLeNet包含pooling层在内，总共是27层的模型。
+
+	
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{googlenet}
@@ -299,11 +294,11 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[VGGNet2] VGGNet2\cite{szegedy2014going}是Visual Geometry Group在ILSVRC 2014上，使用的深度学习网络模型。
+\item[VGGNet] VGGNet\cite{szegedy2014going}是Visual Geometry Group在ILSVRC 2014上，使用的深度学习网络模型。VGGNet与AlexNet的网络模型很相似，同为5组卷积层，3个全连接层。在VGGNet中，前5组的卷积层各有不同配置，即模型中有A$\sim$E，卷积层数从8到16递增。%，但最后通过加深卷积层数也到达提神准确率的瓶颈。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{vggnet2}
-\caption{VGGNet2}
+\caption{VGGNet}
 %\label{fig:framework}
 \end{figure}
 
@@ -312,6 +307,14 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 \centering
 \includegraphics[width=0.5\textwidth]{PCANet}
 \caption{PCANet}
+%\label{fig:framework}
+\end{figure}
+
+\item[Deep Fisher Net] Deep Fisher Net\cite{simonyan2013deep}是Visual Geometry Group，University of Oxford在ILSVRC 2013分类上使用的模型，结合了两种深度框架：the deep Fisher vector network 和 the deep convolutional network。
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\textwidth]{vggnet1}
+\caption{VGGNet}
 %\label{fig:framework}
 \end{figure}
 
@@ -335,8 +338,9 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 
 
 \subsection{Pooling}
+基于图像的局部信息与全局信息，可认为一个图像区域有用的特征极有可能在另一个区域同样适用。而且为了描述大的图像，可以对不同位置的特征进行聚合统计。
 
-用更高层的抽象表示图像特征， 降维，CNN重点，不同的pooling框不重合，表示分辨率的下降，信息的融合。
+在卷积神经网络中，经常在卷积层后加入池化操作（pooling），通过池化来降低卷积层输出的特征向量维数，即用更高层的抽象表示图像特征，实现信息的融合。常见的池化操作分为为平均池化mean pooling和最大池化max pooling。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{pooling}
@@ -345,16 +349,16 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 \end{figure}
 
 \subsection{PCA}
-Principal Components Analysis，主成分分析。主要使用在降维，对每个RGB图像进行一个PCA变换，完成去噪功能与保证图像多样性，加入了一个随机尺度因子，每一轮重新生成一个尺度因子，保证了同一副图像中在显著特征上有一定范围的变换，降低overfitting。
+Principal Components Analysis，主成分分析。主要使用在降维，对每个RGB图像进行一个PCA变换，完成去噪功能与保证图像多样性。可认为，加入了一个随机尺度因子，每一轮重新生成一个尺度因子，保证了同一副图像中在显著特征上有一定范围的变换，降低overfitting。
 
 \subsection{Image transformation}
 通过对于图像的变换实现了对于数据集合的扩大，在位置的维度上丰富了训练数据。降低了overfitting和网络结构设计的复杂程度。
 
 \subsection{LPN}
-Local Response Normalization，局部响应归一化。完成“临近抑制”操作，对局部输入区域进行归一化。在通道间归一化模式中，局部区域范围在相邻通道间，没有空间扩展。在通道内归一化模式中，局部区域在空间上扩展，只针对独立通道进行。
+Local Response Normalization，局部响应归一化。完成``临近抑制''操作，对局部输入区域进行归一化。在通道间归一化模式中，局部区域范围在相邻通道间，没有空间扩展。在通道内归一化模式中，局部区域在空间上扩展，只针对独立通道进行。
 
 \subsection{Pre-training}
-``逐层初始化''（Layer-wise Pre-training）。采用的逐层贪婪训练方法来训练网络的参数，，即先训练网络的第一个隐含层，然后接着训练第二个，第三个。最后用这些训练好的网络参数值作为整体网络参数的初始值。前几层的网络层次基本都用无监督的方法容易获得，只有最后一个输出层需要有监督的数据。
+``逐层初始化''（Layer-wise Pre-training）。采用的逐层贪婪训练方法来训练网络的参数，即先训练网络的第一个隐含层，解得到较好的值作为第一层的初始参数。然后接着训练第二层，第三层。最后用这些训练好的网络参数值作为整体网络参数的初始值。前几层的网络层次基本都用无监督的方法容易获得，只有最后一个输出层需要有监督的数据。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{pre-training}
@@ -363,10 +367,16 @@ Local Response Normalization，局部响应归一化。完成“临近抑制”�
 \end{figure}
 
 \subsection{优化参数算法}
-SGD：随机梯度下降法。
+SGD：随机梯度下降。
+
+BGD：批量梯度下降。
+
+\subsection{Batch-Normalizetion}
+
+\subsection{Prelu}
 
 
-\section{方法}
+\section{解决方案}
 \subsection{Caffe}
 Caffe（Convolutional Architecture for Fast Feature Embedding）是纯粹的C++/CUDA架构，支持命令行、Python和MATLAB接口，且在CPU和GPU直接无缝切换。
 \subsubsection{Caffe优点：}
@@ -455,7 +465,9 @@ AlexNet网络结构是CNN类型的DeepLearning网络模型在图像分类上的�
 \label{fig:framework}
 \end{figure}
 
-该模型训练了一个深度卷积神经网络，来将ILSVRC-2010中1.2M的高分辨率图像数据分为1000类。测试结果，Top-1和Top-5的错误率分别为37.5\%和17\%。优于当时最优的水平。后来作者利用该种模型的变体参与了ILSVRC-2012比赛，以Top-5错误率15.3\%遥遥领先亚军的26.2\%。该神经网络包含60M参数和650K神经元，用5个卷积层（其中某些层与亚采样层连接）、三个全连接层（包括一个1K门的输出层）。为使训练更快，文章采用非饱和神经元，包括了大量不常见和新的特征来提升性能，减少训练时间。并利用了一个高效的GPU应用进行卷积运算。最终网络包含5层卷积层和3层全连接层。而这个层深度很重要，因为移除任何一个卷积层，将会导致更差的结果。网络大小主要受限于GPU的内存和训练时间。实验证明，本网络在有两个GTX 580 3GB GPU的机器上训练了5-6天。实验结果显示，如果GPU更快或数据集更大，实验结果将会更好。架构上的改进：
+AlexNet网络模型训练了一个深度卷积神经网络，来将ILSVRC 2010中1.2M的高分辨率图像数据分为1000类。测试结果，Top-1和Top-5的错误率分别为37.5\%和17\%，优于当时最优的水平。后来作者修改了该模型参与了ILSVRC 2012竞赛，以Top-5错误率15.3\%遥遥领先亚军的26.2\%。
+
+AlexNet网络模型用5个卷积层和3个全连接层，其中包含了60M参数和650K神经元，。为使训练更快，文章采用非饱和神经元，包括了大量不常见和新的特征来提升性能，减少训练时间。并利用了一个高效的GPU应用进行卷积运算。最终网络包含5层卷积层和3层全连接层。而这个层深度很重要，因为移除任何一个卷积层，将会导致更差的结果。网络大小主要受限于GPU的内存和训练时间。实验证明，本网络在有两个GTX 580 3GB GPU的机器上训练了5-6天。实验结果显示，如果GPU更快或数据集更大，实验结果将会更好。架构上的改进：
 	\begin{itemize}
 	\item ReLU非线性特征 
 	\item 在多GPU上训练
@@ -527,21 +539,21 @@ AlexNet网络结构是CNN类型的DeepLearning网络模型在图像分类上的�
 \item 第六层全连接：4096维，将第五层的输出连接成为一个一维向量，作为该层的输入。如图Figure~\ref{fig:fc6}。
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{fc1}
+	\includegraphics[width=0.5\textwidth]{fc1}
 	\caption{Fc6}
 	\label{fig:fc6}
 	\end{figure}
 \item 第七层全连接：4096维，将第六层的输出连接成为一个一维向量。如图Figure~\ref{fig:fc7}。
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{fc2}
+	\includegraphics[width=0.5\textwidth]{fc2}
 	\caption{Fc7}
 	\label{fig:fc7}
 	\end{figure}
 \item Softmax层：输出为1000，输出的每一维都是图片属于该类别的概率。如图Figure~\ref{fig:fc8}。
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{fc3}
+	\includegraphics[width=0.5\textwidth]{fc3}
 	\caption{Fc8}
 	\label{fig:fc8}
 	\end{figure}

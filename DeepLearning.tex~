@@ -257,7 +257,7 @@
 \subsection{网络模型}
 在图像识别与分类上，主要使用卷积神经网络（Convolutional Neural Network, CNN）的网络模型来实现的。
 \begin{description}
-\item [AlexNet] AlexNet\footnote{ImageNet Classification with Deep Convolutional Neural Networks}是Hinton与其学生为了回应别人对于deep learning的质疑而将deep learning用于ImageNet的ILSVRC 2012上，结果优于当时最优的水平。该模型训练了一个深度卷积神经网络来完成分类和检测任务。AlexNet包含5层卷积层和3层全连接层。
+\item [AlexNet] AlexNet\footnote{ImageNet Classification with Deep Convolutional Neural Networks}是Hinton与其学生为了回应别人对于deep learning的质疑而将deep learning用于ImageNet的ILSVRC 2012上，结果优于当时最优的水平。该模型训练了一个深度卷积神经网络来完成分类和检测任务AlexNet包含5层卷积层和3层全连接层。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.55\textwidth]{AlexNet}

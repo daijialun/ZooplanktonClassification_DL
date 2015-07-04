@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  27 JUN 2015 14:24
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  3 JUL 2015 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2230,46 +2230,85 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 205.
 
 (/opt/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+File: figures/ILSVRC.png Graphic file (type QTm)
 
-] [2]
+<use  "figures/ILSVRC.png" >
+File: figures/ILSVRC2013.png Graphic file (type QTm)
+ <use  "figures/ILSVRC2013.png" >
+File: figures/zooplankton1.jpg Graphic file (type QTm)
+
+<use  "figures/zooplankton1.jpg" >
+File: figures/zooplankton2.jpg Graphic file (type QTm)
+ <use  "figures/zooplankton2.jpg" > [1
+
+]
 File: figures/AlexNet.png Graphic file (type QTm)
 
-<use  "figures/AlexNet.png" >
-File: figures/conv1_1.png Graphic file (type QTm)
- <use  "figures/conv1_1.png" > [3]
-File: figures/conv2_2.png Graphic file (type QTm)
+<use  "figures/AlexNet.png" > [2]
+File: figures/vggnet1.png Graphic file (type QTm)
+ <use  "figures/vggnet1.png" >
+File: figures/overfeat.png Graphic file (type QTm)
 
-<use  "figures/conv2_2.png" >
+<use  "figures/overfeat.png" >
+File: figures/NIN.png Graphic file (type QTm)
+ <use  "figures/NIN.png" >
+File: figures/googlenet.png Graphic file (type QTm)
+
+<use  "figures/googlenet.png" > [3]
+File: figures/vggnet2.png Graphic file (type QTm)
+ <use  "figures/vggnet2.png" >
+File: figures/PCANet.png Graphic file (type QTm)
+
+<use  "figures/PCANet.png" >
+File: figures/dropout.png Graphic file (type QTm)
+ <use  "figures/dropout.png" >
+File: figures/dropout1.png Graphic file (type QTm)
+
+<use  "figures/dropout1.png" > [4]
+File: figures/pooling.png Graphic file (type QTm)
+ <use  "figures/pooling.png" > [5] [6]
+File: figures/pre-training.png Graphic file (type QTm)
+
+<use  "figures/pre-training.png" > [7] [8]
+File: figures/AlexNet.png Graphic file (type QTm)
+ <use  "figures/AlexNet.png" >
+[9] [10]
+File: figures/conv1_1.png Graphic file (type QTm)
+ <use  "figures/conv1_1.png" >
+File: figures/conv2_2.png Graphic file (type QTm)
+ <use  "figures/conv2_2.png" >
 File: figures/conv3.png Graphic file (type QTm)
- <use  "figures/conv3.png" >
+
+<use  "figures/conv3.png" > [11]
+File: figures/conv4.png Graphic file (type QTm)
+ <use  "figures/conv4.png" >
 File: figures/conv4.png Graphic file (type QTm)
 
 <use  "figures/conv4.png" >
-File: figures/conv4.png Graphic file (type QTm)
- <use  "figures/conv4.png" >
 File: figures/fc1.png Graphic file (type QTm)
-
-<use  "figures/fc1.png" > [4]
+ <use  "figures/fc1.png" >
 File: figures/fc2.png Graphic file (type QTm)
- <use  "figures/fc2.png" >
-File: figures/fc3.png Graphic file (type QTm)
 
-<use  "figures/fc3.png" > [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 384.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 384.
- (./DeepLearning.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 384.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 384.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 384.
+<use  "figures/fc2.png" >
+File: figures/fc3.png Graphic file (type QTm)
+ <use  "figures/fc3.png" > [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 551.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 551.
+
+(./DeepLearning.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 551.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 551.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 551.
  ) 
 Here is how much of TeX's memory you used:
- 46527 strings out of 493706
- 995346 string characters out of 6145769
- 1160878 words of memory out of 5000000
- 49197 multiletter control sequences out of 15000+600000
- 12216 words of font info for 69 fonts, out of 8000000 for 9000
+ 46610 strings out of 493706
+ 998062 string characters out of 6145769
+ 1163905 words of memory out of 5000000
+ 49259 multiletter control sequences out of 15000+600000
+ 12877 words of font info for 74 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,13n,82p,10437b,780s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on DeepLearning.pdf (6 pages).
+Output written on DeepLearning.pdf (13 pages).

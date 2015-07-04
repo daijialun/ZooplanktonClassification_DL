@@ -260,7 +260,7 @@
 \item [AlexNet] AlexNet\cite{krizhevsky2012imagenet}是Hinton与其学生为了回应别人对于deep learning的质疑而将deep learning用于ImageNet的ILSVRC 2012上，结果优于当时最优的水平。该模型训练了一个深度卷积神经网络来完成分类和检测任务。AlexNet包含5层卷积层和3层全连接层。
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.55\textwidth]{AlexNet}
+\includegraphics[width=0.6\textwidth]{AlexNet}
 \caption{AlexNet}
 %\label{fig:framework}
 \end{figure}
@@ -271,7 +271,7 @@
 OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 2013分类、定位与检测竞赛。在Overfeat主要展示了多尺度和扫描窗口可以有效应用在卷积网络上。而且，不同的任务可以通过一个共享的学习网络来实现。
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{overfeat}
+\includegraphics[width=0.65\textwidth]{overfeat}
 \caption{overfeat}
 %\label{fig:framework}
 \end{figure}
@@ -279,33 +279,30 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 \item[NIN] NIN（Network In Network）\cite{Lin:2013aa}是Learn­ing and Vi­sion Re­search Group，Na­tion­al Uni­ver­si­ty of Sin­ga­pore所使用的深度学习框架。他们团队通过在深度网络中建立更复杂的微型神经网络来提取数据。NIN网络包含了三个多元卷积层和一个全局平局pooling层。另外，他们团队提出``adaptive non-parametric rectification''方法来提高准确率。 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{NIN}
+\includegraphics[width=0.55\textwidth]{NIN}
 \caption{NIN}
 %\label{fig:framework}
 \end{figure}
 
 \item[GoogLeNet] GoogLeNet\cite{simonyan2014very}是Google团队在ILSVRC 2014上，使用的深度学习网络模型，来完成分类和检测的任务。在GoogLeNet模型中，提出了Inception模型，即采用不同尺度的卷积核来处理问题。另外，该网络最大的特点就是提升了计算资源的利用率，即在网络所需计算不变的前提下，提升了网络的宽度和深度。最后，使用了基于Hebbian Principle和多尺寸处理来提高准确率。GoogLeNet包含pooling层在内，总共是27层的模型。
-
-	
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{googlenet}
+\includegraphics[width=0.65\textwidth]{googlenet}
 \caption{GoogLeNet}
 %\label{fig:framework}
 \end{figure}
-
 \item[VGGNet] VGGNet\cite{szegedy2014going}是Visual Geometry Group在ILSVRC 2014上，使用的深度学习网络模型。VGGNet与AlexNet的网络模型很相似，同为5组卷积层，3个全连接层。在VGGNet中，前5组的卷积层各有不同配置，即模型中有A$\sim$E，卷积层数从8到16递增。%，但最后通过加深卷积层数也到达提神准确率的瓶颈。
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{vggnet2}
+\includegraphics[width=0.42\textwidth]{vggnet2}
 \caption{VGGNet}
 %\label{fig:framework}
 \end{figure}
 
-\item[PCANet] PCANet\footnote{PCANet: A Simple Deep Learning Baseline for Image Classification?}是一个基于CNN的简化Deep Learning模型。经典的CNN存在的问题是参数训练时间过长且需要特别的调参技巧。PCANet模型是一种训练过程简单，且能适应不同任务、不同数据类型的网络模型。卷积核是直接通过PCA计算得到的，而不是像CNN一样通过反馈迭代得到的。
+\item[PCANet] PCANet是一个基于CNN的简化Deep Learning模型。经典的CNN存在的问题是参数训练时间过长且需要特别的调参技巧。PCANet模型是一种训练过程简单，且能适应不同任务、不同数据类型的网络模型。卷积核是直接通过PCA计算得到的，而不是像CNN一样通过反馈迭代得到的。
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{PCANet}
+\includegraphics[width=0.65\textwidth]{PCANet}
 \caption{PCANet}
 %\label{fig:framework}
 \end{figure}
@@ -314,7 +311,7 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\textwidth]{vggnet1}
-\caption{VGGNet}
+\caption{Deep Fisher Net}
 %\label{fig:framework}
 \end{figure}
 
@@ -467,29 +464,21 @@ AlexNet网络结构是CNN类型的DeepLearning网络模型在图像分类上的�
 
 AlexNet网络模型训练了一个深度卷积神经网络，来将ILSVRC 2010中1.2M的高分辨率图像数据分为1000类。测试结果，Top-1和Top-5的错误率分别为37.5\%和17\%，优于当时最优的水平。后来作者修改了该模型参与了ILSVRC 2012竞赛，以Top-5错误率15.3\%遥遥领先亚军的26.2\%。
 
-AlexNet网络模型用5个卷积层和3个全连接层，其中包含了60M参数和650K神经元，。为使训练更快，文章采用非饱和神经元，包括了大量不常见和新的特征来提升性能，减少训练时间。并利用了一个高效的GPU应用进行卷积运算。最终网络包含5层卷积层和3层全连接层。而这个层深度很重要，因为移除任何一个卷积层，将会导致更差的结果。网络大小主要受限于GPU的内存和训练时间。实验证明，本网络在有两个GTX 580 3GB GPU的机器上训练了5-6天。实验结果显示，如果GPU更快或数据集更大，实验结果将会更好。架构上的改进：
-	\begin{itemize}
-	\item ReLU非线性特征 
-	\item 在多GPU上训练
-	\item 局部响应标准化
-	\item 重叠采样
-	\end{itemize}
-\textbf{全局架构}：网络包括八个有权值的层。前五层是卷积层，剩下的三层是全连接的。最后一个全连接层是输出层。第二、四、五个卷积层只与上层在同一个GPU上的Kernel Map（下文称特征图）连接，第三个卷积层与第二个卷积层的所有特征图连接。全连接层的神经元与上一层的所有神经元连接（即改进二）。响应标准化层在第一和第二个卷积层之后（改进三），降采样层在响应标准化层和第五个卷积层之后（改进四）。而ReLU非线性公式在每个卷积层和全连接层都有应用（改进一）。
-\textbf{降低过拟合}:
-\begin{itemize}
-\item 数据增强：通过提取图片的5个224*224切片（中间和四角）和它们的水平翻转来做出预测，预测结果为十次预测的平均值。第二种数据增强的方式为改变训练图像RGB通道的强度，对RGB空间做PCA，然后对主成分做一个(0, 0.1)的高斯扰动。结果让错误率又下降了百分一。
+AlexNet网络模型用5个卷积层和3个全连接层，其中包含了60M参数和650K神经元。为使训练更快，AlexNet采用非饱和神经元，包括了大量不常见和新的特征来提升性能，减少训练时间。并利用了两个高效的GPU进行卷积运算。而这个层深度很重要，因为移除任何一个卷积层，将会导致更差的结果。网络大小主要受限于GPU的内存和训练时间。实验证明，本网络在有两个GTX 580 3GB GPU的机器上训练了5$\sim$6天。实验结果显示，如果GPU更快或数据集更大，实验结果将会更好。
 
-\item Dropout：将某些层隐藏，按照50\%的概率输出0。这些隐藏的神经元不会参加CNN的forward过程，也不会参加back propagation过程。测试中，我们在前两个全连接层使用了该方法，利用他们所有的神经元，但其输出都乘以了0.5。没有dropout，我们的网络将会产生严重的过拟合。
-\end{itemize}
+%架构上的改进：
+%	\begin{itemize}
+%	\item ReLU非线性特征 
+%	\item 在多GPU上训练
+%	\item 局部响应标准化
+%	\item 重叠采样
+%	\end{itemize}
+%\textbf{全局架构}：网络包括八个有权值的层。前五层是卷积层，剩下的三层是全连接层。其中，最后一个全连接层是输出层。第二、四、五个卷积层只与上层在同一个GPU上的Kernel Map（下文称特征图）连接，第三个卷积层与第二个卷积层的所有特征图连接。全连接层的神经元与上一层的所有神经元连接。响应标准化层在第一和第二个卷积层之后，降采样层在响应标准化层和第五个卷积层之后。而ReLU非线性公式在每个卷积层和全连接层都有应用。
 
-每移走一层中间的层，Top-1的错误率将会增高2\%。
 
-但为了简化实验，文章没有使用任何无监督学习。如果那样，那么在更大规模的网络和更长时间训练的情况下，我们得结果就能得到提高。
+为了简化实验，模型没有使用任何无监督学习。否则，在更大规模的网络和更长时间训练的情况下，AlexNet所得结果就能得到提高。另外，保持AlexNet网络模型的结构稳定，因为每移走一层中间的层，Top-1的错误率将会增高2\%。
 
-结果显示，大规模、低深度的CNN在监督学习下能够达到破纪录的好结果。而本文章的模型的层数不能随意变动，实验证明，每移走一层中间的层，Top-1的错误率将会增高2%。
-
-虽然如果我们能够有更好的计算性能来增大网络规模，却不增加标签数据，可能会提高最后的正确率，但为了简化实验，文章没有使用任何无监督学习。如果那样，那么在更大规模的网络和更长时间训练的情况下，我们得结果就能得到提高。但我们仍然有很多需求来进行时空下视觉系统的研究。最终我们就能用很大很深的深度卷积网络来处理视频序列，以得到静态图片可能会忽视的信息。
-
+\subsubsection{逐层功能实现：}
 \begin{itemize}
 \item 输入224$\times$224的图片，3通道
 \item 第一层卷积 + pooling：11$\times$11的卷积核96个，步长为4，每个GPU各有48个。max-pooling的核为2$\times$2。如图Figure~\ref{fig:conv1}。
@@ -558,6 +547,26 @@ AlexNet网络模型用5个卷积层和3个全连接层，其中包含了60M参�
 	\label{fig:fc8}
 	\end{figure}
 \end{itemize}
+
+
+\subsubsection{注意事项}
+\begin{itemize}
+\item 降低过拟合:
+\begin{itemize}
+\item 数据增强：通过提取图片的5个224*224切片（中间和四角）和它们的水平翻转来做出预测，预测结果为十次预测的平均值。第二种数据增强的方式为改变训练图像RGB通道的强度，对RGB空间做PCA，然后对主成分做高斯扰动。结果让错误率又下降了1\%。
+
+\item Dropout：将某些层隐藏，按照50\%的概率输出0。这些隐藏的神经元不会参加CNN的forward过程，也不会参加back propagation过程。测试中，在前两个全连接层使用了该方法，使所有的神经元，但其输出都乘以0.5。如果没有dropout策略，AlexNet将会产生严重的过拟合。\newline
+\end{itemize}
+
+\item 架构上可改进方面：
+\begin{itemize}
+\item ReLU非线性特征 
+\item 在多GPU上训练
+\item 局部响应标准化
+\item 重叠采样
+\end{itemize}
+\end{itemize}
+
 
 \bibliographystyle{plain}
 \bibliography{DeepLearning}

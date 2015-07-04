@@ -22,3 +22,5 @@
 \BOOKMARK [3][-]{subsubsection.4.2.3}{4.2.3 CNN网络配置文件：}{subsection.4.2}% 22
 \BOOKMARK [2][-]{subsection.4.3}{4.3\040AlexNet}{section.4}% 23
 \BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 网络结构}{subsection.4.3}% 24
+\BOOKMARK [3][-]{subsubsection.4.3.2}{4.3.2 逐层功能实现：}{subsection.4.3}% 25
+\BOOKMARK [3][-]{subsubsection.4.3.3}{4.3.3 注意事项}{subsection.4.3}% 26

@@ -1,5 +1,5 @@
 \BOOKMARK [1][-]{section.1}{1 问题}{}% 1
-\BOOKMARK [1][-]{section.2}{2 方案}{}% 2
+\BOOKMARK [1][-]{section.2}{2 可用方案}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{2.1 开源软件}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{2.2 网络模型}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{3 优化技巧}{}% 5
@@ -10,13 +10,15 @@
 \BOOKMARK [2][-]{subsection.3.5}{3.5\040LPN}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.6}{3.6\040Pre-training}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.7}{3.7 优化参数算法}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{4 方法}{}% 13
-\BOOKMARK [2][-]{subsection.4.1}{4.1\040Caffe}{section.4}% 14
-\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Caffe优点：}{subsection.4.1}% 15
-\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 代码层次}{subsection.4.1}% 16
-\BOOKMARK [2][-]{subsection.4.2}{4.2\040CNN}{section.4}% 17
-\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 CNN优点：}{subsection.4.2}% 18
-\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 CNN组成：}{subsection.4.2}% 19
-\BOOKMARK [3][-]{subsubsection.4.2.3}{4.2.3 CNN网络配置文件：}{subsection.4.2}% 20
-\BOOKMARK [2][-]{subsection.4.3}{4.3\040AlexNet}{section.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 网络结构}{subsection.4.3}% 22
+\BOOKMARK [2][-]{subsection.3.8}{3.8\040Batch-Normalizetion}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.9}{3.9\040Prelu}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{4 解决方案}{}% 15
+\BOOKMARK [2][-]{subsection.4.1}{4.1\040Caffe}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Caffe优点：}{subsection.4.1}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.2}{4.1.2 代码层次}{subsection.4.1}% 18
+\BOOKMARK [2][-]{subsection.4.2}{4.2\040CNN}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.1}{4.2.1 CNN优点：}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.2}{4.2.2 CNN组成：}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection.4.2.3}{4.2.3 CNN网络配置文件：}{subsection.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.3}{4.3\040AlexNet}{section.4}% 23
+\BOOKMARK [3][-]{subsubsection.4.3.1}{4.3.1 网络结构}{subsection.4.3}% 24

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  4 JUL 2015 17:24
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  4 JUL 2015 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2067,7 +2067,7 @@ Package: xeCJK-listings 2015/05/15 v3.3.2 xeCJK patch file for listings
 \l__xeCJK_listings_max_char_int=\count208
 \l__xeCJK_listings_flag_int=\count209
 )
-(./DeepLearning.aux)
+No file DeepLearning.aux.
 \openout1 = `DeepLearning.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 196.
@@ -2086,7 +2086,7 @@ LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 196.
 LaTeX Font Info:    ... okay on input line 196.
 LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 196.
 LaTeX Font Info:    Try loading font information for T3+cmr on input line 196.
- (/opt/texlive/2015/texmf-dist/tex/latex/tipa/t3cmr.fd
+(/opt/texlive/2015/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
 LaTeX Font Info:    ... okay on input line 196.
@@ -2211,10 +2211,12 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 196.
 LaTeX Info: Redefining \pageref on input line 196.
 LaTeX Info: Redefining \nameref on input line 196.
-
-(./DeepLearning.out) (./DeepLearning.out)
 \@outlinefile=\write5
 \openout5 = `DeepLearning.out'.
+
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 .................................................
 . LaTeX info: "xparse/redefine-command"
@@ -2222,7 +2224,6 @@ LaTeX Info: Redefining \nameref on input line 196.
 . Redefining command \Pifont with sig. 'm' on line 196.
 .................................................
 LaTeX Font Info:    Try loading font information for U+msa on input line 205.
-
 (/opt/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -2243,69 +2244,119 @@ File: figures/zooplankton2.jpg Graphic file (type QTm)
  <use  "figures/zooplankton2.jpg" > [1
 
 ]
+
+LaTeX Warning: Citation `krizhevsky2012imagenet' on page 2 undefined on input l
+ine 260.
+
 File: figures/AlexNet.png Graphic file (type QTm)
-
 <use  "figures/AlexNet.png" > [2]
-File: figures/vggnet1.png Graphic file (type QTm)
- <use  "figures/vggnet1.png" >
+
+LaTeX Warning: Citation `sermanet2013overfeat' on page 3 undefined on input lin
+e 269.
+
 File: figures/overfeat.png Graphic file (type QTm)
-
 <use  "figures/overfeat.png" >
+
+LaTeX Warning: Citation `Lin:2013aa' on page 3 undefined on input line 279.
+
 File: figures/NIN.png Graphic file (type QTm)
- <use  "figures/NIN.png" >
+<use  "figures/NIN.png" >
+
+LaTeX Warning: Citation `simonyan2014very' on page 3 undefined on input line 28
+7.
+
+[3]
 File: figures/googlenet.png Graphic file (type QTm)
+ <use  "figures/googlenet.png" >
 
-<use  "figures/googlenet.png" >
+LaTeX Warning: Citation `szegedy2014going' on page 4 undefined on input line 29
+7.
+
 File: figures/vggnet2.png Graphic file (type QTm)
- <use  "figures/vggnet2.png" > [3]
+<use  "figures/vggnet2.png" >
 File: figures/PCANet.png Graphic file (type QTm)
+ <use  "figures/PCANet.png" > [4]
 
-<use  "figures/PCANet.png" >
+LaTeX Warning: Citation `simonyan2013deep' on page 5 undefined on input line 31
+3.
+
+File: figures/vggnet1.png Graphic file (type QTm)
+<use  "figures/vggnet1.png" >
 File: figures/dropout.png Graphic file (type QTm)
  <use  "figures/dropout.png" >
 File: figures/dropout1.png Graphic file (type QTm)
 
-<use  "figures/dropout1.png" > [4]
+<use  "figures/dropout1.png" > [5]
 File: figures/pooling.png Graphic file (type QTm)
- <use  "figures/pooling.png" > [5] [6]
+ <use  "figures/pooling.png" > [6]
 File: figures/pre-training.png Graphic file (type QTm)
 
-<use  "figures/pre-training.png" > [7] [8]
+<use  "figures/pre-training.png" > [7] [8] [9]
+
+LaTeX Warning: Reference `fig:framework' on page 10 undefined on input line 459
+.
+
 File: figures/AlexNet.png Graphic file (type QTm)
- <use  "figures/AlexNet.png" >
-[9] [10]
+<use  "figures/AlexNet.png" > [10] [11]
+
+LaTeX Warning: Reference `fig:conv1' on page 12 undefined on input line 495.
+
 File: figures/conv1_1.png Graphic file (type QTm)
- <use  "figures/conv1_1.png" >
+<use  "figures/conv1_1.png" >
+
+LaTeX Warning: Reference `fig:conv2' on page 12 undefined on input line 505.
+
 File: figures/conv2_2.png Graphic file (type QTm)
- <use  "figures/conv2_2.png" >
+<use  "figures/conv2_2.png" >
+
+LaTeX Warning: Reference `fig:conv3' on page 12 undefined on input line 515.
+
 File: figures/conv3.png Graphic file (type QTm)
+<use  "figures/conv3.png" >
 
-<use  "figures/conv3.png" > [11]
-File: figures/conv4.png Graphic file (type QTm)
- <use  "figures/conv4.png" >
-File: figures/conv4.png Graphic file (type QTm)
+LaTeX Warning: Reference `fig:conv4' on page 12 undefined on input line 522.
 
+File: figures/conv4.png Graphic file (type QTm)
 <use  "figures/conv4.png" >
-File: figures/fc1.png Graphic file (type QTm)
- <use  "figures/fc1.png" >
-File: figures/fc2.png Graphic file (type QTm)
 
+LaTeX Warning: Reference `fig:conv5' on page 12 undefined on input line 529.
+
+File: figures/conv4.png Graphic file (type QTm)
+<use  "figures/conv4.png" >
+
+LaTeX Warning: Reference `fig:fc6' on page 12 undefined on input line 539.
+
+File: figures/fc1.png Graphic file (type QTm)
+<use  "figures/fc1.png" > [12]
+
+LaTeX Warning: Reference `fig:fc7' on page 13 undefined on input line 546.
+
+File: figures/fc2.png Graphic file (type QTm)
 <use  "figures/fc2.png" >
+
+LaTeX Warning: Reference `fig:fc8' on page 13 undefined on input line 553.
+
 File: figures/fc3.png Graphic file (type QTm)
- <use  "figures/fc3.png" > (./DeepLearning.bbl
-[12] [13]) [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
+<use  "figures/fc3.png" > (./DeepLearning.bbl [13]) [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 566.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 566.
  (./DeepLearning.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 554.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 554.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 566.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 566.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 566.
  ) 
 Here is how much of TeX's memory you used:
- 46622 strings out of 493706
- 998297 string characters out of 6145769
- 1164137 words of memory out of 5000000
- 49266 multiletter control sequences out of 15000+600000
+ 46590 strings out of 493706
+ 997050 string characters out of 6145769
+ 1166524 words of memory out of 5000000
+ 49240 multiletter control sequences out of 15000+600000
  12885 words of font info for 75 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,13n,82p,10437b,780s stack positions out of 5000i,500n,10000p,200000b,80000s

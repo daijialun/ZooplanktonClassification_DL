@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105, 2012.
+
+\bibitem{Lin:2013aa}
+Min Lin, Qiang Chen, and Shuicheng Yan.
+\newblock Network in network.
+\newblock 12 2013.
+
+\bibitem{sermanet2013overfeat}
+Pierre Sermanet, David Eigen, Xiang Zhang, Micha{\"e}l Mathieu, Rob Fergus, and
+  Yann LeCun.
+\newblock Overfeat: Integrated recognition, localization and detection using
+  convolutional networks.
+\newblock {\em arXiv preprint arXiv:1312.6229}, 2013.
+
+\bibitem{simonyan2013deep}
+Karen Simonyan, Andrea Vedaldi, and Andrew Zisserman.
+\newblock Deep fisher networks for large-scale image classification.
+\newblock In {\em Advances in neural information processing systems}, pages
+  163--171, 2013.
+
+\bibitem{simonyan2014very}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
+
+\bibitem{szegedy2014going}
+Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir
+  Anguelov, Dumitru Erhan, Vincent Vanhoucke, and Andrew Rabinovich.
+\newblock Going deeper with convolutions.
+\newblock {\em arXiv preprint arXiv:1409.4842}, 2014.
+
+\end{thebibliography}

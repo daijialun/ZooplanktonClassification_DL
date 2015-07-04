@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  3 JUL 2015 22:34
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.6.24)  4 JUL 2015 17:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2255,9 +2255,9 @@ File: figures/NIN.png Graphic file (type QTm)
  <use  "figures/NIN.png" >
 File: figures/googlenet.png Graphic file (type QTm)
 
-<use  "figures/googlenet.png" > [3]
+<use  "figures/googlenet.png" >
 File: figures/vggnet2.png Graphic file (type QTm)
- <use  "figures/vggnet2.png" >
+ <use  "figures/vggnet2.png" > [3]
 File: figures/PCANet.png Graphic file (type QTm)
 
 <use  "figures/PCANet.png" >
@@ -2292,23 +2292,22 @@ File: figures/fc2.png Graphic file (type QTm)
 
 <use  "figures/fc2.png" >
 File: figures/fc3.png Graphic file (type QTm)
- <use  "figures/fc3.png" > [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 551.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 551.
-
-(./DeepLearning.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 551.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 551.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 551.
+ <use  "figures/fc3.png" > (./DeepLearning.bbl
+[12] [13]) [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
+ (./DeepLearning.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 554.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 554.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
  ) 
 Here is how much of TeX's memory you used:
- 46610 strings out of 493706
- 998062 string characters out of 6145769
- 1163905 words of memory out of 5000000
- 49259 multiletter control sequences out of 15000+600000
- 12877 words of font info for 74 fonts, out of 8000000 for 9000
+ 46622 strings out of 493706
+ 998297 string characters out of 6145769
+ 1164137 words of memory out of 5000000
+ 49266 multiletter control sequences out of 15000+600000
+ 12885 words of font info for 75 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,13n,82p,10437b,780s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on DeepLearning.pdf (13 pages).
+Output written on DeepLearning.pdf (14 pages).

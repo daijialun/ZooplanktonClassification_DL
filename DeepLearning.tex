@@ -257,7 +257,7 @@
 \subsection{网络模型}
 在图像识别与分类上，主要使用卷积神经网络（Convolutional Neural Network, CNN）的网络模型来实现的。
 \begin{description}
-\item [AlexNet] AlexNet\footnote{ImageNet Classification with Deep Convolutional Neural Networks}是Hinton与其学生为了回应别人对于deep learning的质疑而将deep learning用于ImageNet的ILSVRC 2012上，结果优于当时最优的水平。该模型训练了一个深度卷积神经网络来完成分类和检测任务。AlexNet包含5层卷积层和3层全连接层。
+\item [AlexNet] AlexNet\cite{krizhevsky2012imagenet}是Hinton与其学生为了回应别人对于deep learning的质疑而将deep learning用于ImageNet的ILSVRC 2012上，结果优于当时最优的水平。该模型训练了一个深度卷积神经网络来完成分类和检测任务。AlexNet包含5层卷积层和3层全连接层。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.55\textwidth]{AlexNet}
@@ -265,7 +265,7 @@
 %\label{fig:framework}
 \end{figure}
 
-\item[VGGNet] VGGNet\footnote{Deep Fisher Networks for Large-Scale Image Classification}是Visual Geometry Group，University of Oxford在ILSVRC 2013分类上使用的模型，结合了两种深度框架：the deep Fisher vector network 和 the deep convolutional network。
+\item[VGGNet] VGGNet\cite{simonyan2013deep}是Visual Geometry Group，University of Oxford在ILSVRC 2013分类上使用的模型，结合了两种深度框架：the deep Fisher vector network 和 the deep convolutional network。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\textwidth]{vggnet1}
@@ -273,7 +273,8 @@
 %\label{fig:framework}
 \end{figure}
 
-\item[OverFeat] OverFeat\footnote{OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks}由CILVR Lab，New York University开发的，基于卷积网络的图像识别和特征提取系统。
+\item[OverFeat] OverFeat\cite{sermanet2013overfeat}%\footnote{OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks}
+由CILVR Lab，New York University开发的，基于卷积网络的图像识别和特征提取系统。
 OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 2013分类、定位与检测竞赛，应用了在卷积网络上的多尺度和扫描框方法。
 \begin{figure}[!ht]
 \centering
@@ -282,7 +283,7 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[NIN] NIN（Network In Network）\footnote{Network In Network}是Learn­ing and Vi­sion Re­search Group，	Na­tion­al Uni­ver­si­ty of Sin­ga­pore所使用的深度学习框架。其中，他们团队提出``adaptive non-parametric rectification''方法来提高准确率。 
+\item[NIN] NIN（Network In Network）\cite{Lin:2013aa}是Learn­ing and Vi­sion Re­search Group，	Na­tion­al Uni­ver­si­ty of Sin­ga­pore所使用的深度学习框架。其中，他们团队提出``adaptive non-parametric rectification''方法来提高准确率。 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{NIN}
@@ -290,7 +291,7 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[GoogLeNet] GoogLeNet\footnote{Going deeper with convolutions}是Google团队在ILSVRC 2014上，使用的深度学习网络模型。
+\item[GoogLeNet] GoogLeNet\cite{simonyan2014very}是Google团队在ILSVRC 2014上，使用的深度学习网络模型。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{googlenet}
@@ -298,7 +299,7 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[VGGNet2] VGGNet2\footnote{Very Deep Convolutional Networks For Large-Scale Image Recognition}是Visual Geometry Group在ILSVRC 2014上，使用的深度学习网络模型。
+\item[VGGNet2] VGGNet2\cite{szegedy2014going}是Visual Geometry Group在ILSVRC 2014上，使用的深度学习网络模型。
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{vggnet2}
@@ -546,6 +547,8 @@ AlexNet网络结构是CNN类型的DeepLearning网络模型在图像分类上的�
 	\end{figure}
 \end{itemize}
 
+\bibliographystyle{plain}
+\bibliography{DeepLearning}
 
 %%---------------------------------------------------------------------
 \end{document}

@@ -1,4 +1,3 @@
-*~
 *.blg
 *.log
 *.nav
@@ -11,3 +10,5 @@
 .DS_Store
 tmp
 CODES
+
+*~

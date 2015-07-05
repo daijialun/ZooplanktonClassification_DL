@@ -154,7 +154,15 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 \end{figure}
 
 \subsection{PCA}
-Principal Components Analysis，主成分分析。主要使用在降维，对每个RGB图像进行一个PCA变换，完成去噪功能与保证图像多样性。可认为，加入了一个随机尺度因子，每一轮重新生成一个尺度因子，保证了同一副图像中在显著特征上有一定范围的变换，降低overfitting。
+PCA（Principal Component Analysis），主成分分析，不仅仅是对高维数据进行降维，更重要的是经过降维去除了噪声，发现了数据中的模式。PCA把原先的n个特征用数目更少的m个特征取代，新特征是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的m个特征互不相关。从旧特征到新特征的映射捕获数据中的固有变异性。对每个RGB图像进行一个PCA变换，完成了去噪功能与保证图像多样性。可认为，加入了一个随机尺度因子，每一轮重新生成一个尺度因子，保证了同一副图像中在显著特征上有一定范围的变换，降低overfitting。
+
+PCA过程：
+\begin{enumerate}
+\item 特征中心化。即每一维的数据都减去该维的均值。
+\item 计算数据的协方差矩阵
+\item 计算协方差矩阵C的特征值和特征向量
+\item 选取大的特征值对应的特征向量，得到新的数据集。
+\end{enumerate}
 
 \subsection{Image transformation}
 通过对于图像的变换实现了对于数据集合的扩大，在位置的维度上丰富了训练数据。降低了overfitting和网络结构设计的复杂程度。
@@ -176,36 +184,42 @@ Local Response Normalization，局部响应归一化。完成``临近抑制''操
 \begin{itemize}
 \item BSD(Batch Gradient Descent)：批量梯度下降。~\\
 也叫最速梯度下降法，它的求解思路如下：\\
-(1)将J(theta)对theta求偏导，得到每个theta对应的的梯度：
+\begin{enumerate}
+\item 将J(theta)对theta求偏导，得到每个theta对应的的梯度：
 \begin{displaymath}
 \frac{\partial J(\theta)}{\partial {\theta_j}} =-\frac{1}{m}\sum_{i=1}^m(y^i-h_{\theta}(x^i))x^i_j
 \end{displaymath}
-(2)由于是要最小化风险函数，所以按每个参数theta的梯度负方向，来更新每个theta:
+\item 由于是要最小化风险函数，所以按每个参数theta的梯度负方向，来更新每个theta:
 \begin{displaymath}
 \theta_j=\theta_j+\frac{1}{m}\sum_{i=1}^m(y^i-h_{\theta}(x^i))x^i_j
 \end{displaymath}
-(3)从上面公式可以注意到，它得到的是一个全局最优解，但是每迭代一步，都要用到训练集所有的数据，如果m很大，那么这种方法的迭代速度会非常慢。
+\item 从上面公式可以注意到，它得到的是一个全局最优解，但是每迭代一步，都要用到训练集所有的数据，如果m很大，那么这种方法的迭代速度会非常慢。
+\end{enumerate}
 \item SGD(Stochastic Gradient Descent)：随机梯度下降。~\\
 SGD是BSD的变种，使用SGD，将进行N次迭代，直到目标函数收敛，或者达某个既定的收敛界限。每次迭代都将对m个样本进行计算，计算量大，因此引入随机梯度下降法，他的求解思路如下：\\
-（1）上面的风险函数可以写成如下这种形式，损失函数对应的是训练集中每个样本的粒度，而上面批量梯度下降对应的是所有的训练样本：
+\begin{enumerate}
+\item 上面的风险函数可以写成如下这种形式，损失函数对应的是训练集中每个样本的粒度，而上面批量梯度下降对应的是所有的训练样本：
 \begin{displaymath}
 J(\theta)=\frac{1}{m}\sum_{i=1}^{m}\frac{1}{2}(y^i-h_{\theta}(x^i))^2=\frac{1}{m}\sum_{i=1}^{m}\cos t(\theta,(x^i,y^i))
 \end{displaymath}
 \begin{displaymath}
 \cos t(\theta,(x^i,y^i))=\frac{1}{2}(y^i-h_{\theta}(x^i))^2
 \end{displaymath}
-（2）每个样本的损失函数，对theta求偏导得到对应梯度，来更新theta:
+\item 每个样本的损失函数，对theta求偏导得到对应梯度，来更新theta:
 \begin{displaymath}
 \theta_j=\theta_j+(y^i-h_{\theta}(x^i))^2{x^i_j}
 \end{displaymath}
-（3）随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经将theta迭代到最优解了，对比上面的批量梯度下降，迭代一次需要用到十几万训练样本，一次迭代不可能最优，如果迭代10次的话就需要遍历训练样本10次。但是，SGD伴随的一个问题是噪音较BGD要多，使得SGD并不是每次迭代都向着整体最优化方向。
+\item 随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经将theta迭代到最优解了，对比上面的批量梯度下降，迭代一次需要用到十几万训练样本，一次迭代不可能最优，如果迭代10次的话就需要遍历训练样本10次。但是，SGD伴随的一个问题是噪音较BGD要多，使得SGD并不是每次迭代都向着整体最优化方向。
+\end{enumerate}
 \end{itemize}
 
 对二者的总结:
 
-（1）批量梯度下降---最小化所有训练样本的损失函数，使得最终求解的是全局的最优解，即求解的参数是使得风险函数最小。
+\begin{itemize}
+\item 批量梯度下降---最小化所有训练样本的损失函数，使得最终求解的是全局的最优解，即求解的参数是使得风险函数最小。
+\item 随机梯度下降---最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近。
+\end{itemize}
 
-（2）随机梯度下降---最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近。
 \subsection{Batch-Normalization}
 批量归一化的算法是Google在论文《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》中提出来的，根据这个算法，如果我们对每一层的数据都进行处理，训练时间和overfit程度可以降低一些。 文中使用了类似z-score的归一化方式：每一维度减去自身均值，再除以自身标准差，由于使用的是随机梯度下降法，这些均值和方差也只能在当前迭代的batch中计算，故作者给这个算法命名为Batch Normalization。
 

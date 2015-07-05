@@ -10,8 +10,8 @@
 \BOOKMARK [2][-]{subsection.3.5}{3.5\040LPN}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.6}{3.6\040Pre-training}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.7}{3.7 优化参数算法}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.8}{3.8\040Batch-Normalizetion}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.9}{3.9\040Prelu}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.8}{3.8\040Batch-Normalization}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.9}{3.9\040PReLU}{section.3}% 14
 \BOOKMARK [1][-]{section.4}{4 解决方案}{}% 15
 \BOOKMARK [2][-]{subsection.4.1}{4.1\040Caffe}{section.4}% 16
 \BOOKMARK [3][-]{subsubsection.4.1.1}{4.1.1 Caffe优点：}{subsection.4.1}% 17

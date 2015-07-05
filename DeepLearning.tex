@@ -1,197 +1,5 @@
-\documentclass[12pt]{article}
-%%---------------------------------------------------------------------
-% packages
-% geometry
-\usepackage{geometry}
-% font
-\usepackage{fontspec}
-\defaultfontfeatures{Mapping=tex-text}  %%如果没有它，会有一些 tex 特殊字符无法正常使用，比如连字符。
-\usepackage{xunicode,xltxtra}
-\usepackage[BoldFont,SlantFont,CJKnumber,CJKchecksingle]{xeCJK}  % \CJKnumber{12345}: 一万二千三百四十五
-\usepackage{CJKfntef}  %%实现对汉字加点、下划线等。
-\usepackage{pifont}  % \ding{}
-% math
-\usepackage{amsmath,amsfonts,amssymb}
-% color
-\usepackage{color}
-\usepackage{xcolor}
-\definecolor{EYE}{RGB}{199,237,204}
-\definecolor{FLY}{RGB}{128,0,128}
-\definecolor{ZHY}{RGB}{139,0,255}
-% graphics
-\usepackage[americaninductors,europeanresistors]{circuitikz}
-\usepackage{tikz}
-\usetikzlibrary{positioning,arrows,shadows,shapes,calc,mindmap,trees,backgrounds}  % placements=positioning
-\usepackage{graphicx}  % \includegraphics[]{}
-\usepackage{subfigure}  %%图形或表格并排排列
-% table
-\usepackage{colortbl,dcolumn}  %% 彩色表格
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{booktabs}
-% code
-\usepackage{fancyvrb}
-\usepackage{listings}
-% title
-\usepackage{titlesec}
-% head/foot
-\usepackage{fancyhdr}
-% ref
-\usepackage{hyperref}
-% pagecolor
-\usepackage[pagecolor={EYE}]{pagecolor}
-% tightly-packed lists
-\usepackage{mdwlist}
-
-\usepackage{styles/iplouccfg}
-\usepackage{styles/zhfontcfg}
-\usepackage{styles/iplouclistings}
-
-%%---------------------------------------------------------------------
-% settings
-% geometry
-\geometry{left=2cm,right=1cm,top=2cm,bottom=2cm}  %设置 上、左、下、右 页边距
-\linespread{1.5} %行间距
-% font
-\setCJKmainfont{Adobe Kaiti Std}
-%\setmainfont[BoldFont=Adobe Garamond Pro Bold]{Apple Garamond}  % 英文字体
-%\setmainfont[BoldFont=Adobe Garamond Pro Bold,SmallCapsFont=Apple Garamond,SmallCapsFeatures={Scale=0.7}]{Apple Garamond}  %%苹果字体没有SmallCaps
-\setCJKmonofont{Adobe Fangsong Std}
-% graphics
-\graphicspath{{figures/}}
-\tikzset{
-    % Define standard arrow tip
-    >=stealth',
-    % Define style for boxes
-    punkt/.style={
-           rectangle,
-           rounded corners,
-           draw=black, very thick,
-           text width=6.5em,
-           minimum height=2em,
-           text centered},
-    % Define arrow style
-    pil/.style={
-           ->,
-           thick,
-           shorten <=2pt,
-           shorten >=2pt,},
-    % Define style for FlyZhyBall
-    FlyZhyBall/.style={
-      circle,
-      minimum size=6mm,
-      inner sep=0.5pt,
-      ball color=red!50!blue,
-      text=white,},
-    % Define style for FlyZhyRectangle
-    FlyZhyRectangle/.style={
-      rectangle,
-      rounded corners,
-      minimum size=6mm,
-      ball color=red!50!blue,
-      text=white,},
-    % Define style for zhyfly
-    zhyfly/.style={
-      rectangle,
-      rounded corners,
-      minimum size=6mm,
-      ball color=red!25!blue,
-      text=white,},
-    % Define style for new rectangle
-    nrectangle/.style={
-      rectangle,
-      draw=#1!50,
-      fill=#1!20,
-      minimum size=5mm,
-      inner sep=0.1pt,}
-}
-\ctikzset{
-  bipoles/length=.8cm
-}
-% code
-\lstnewenvironment{VHDLcode}[1][]{%
-  \lstset{
-    basicstyle=\footnotesize\ttfamily\color{black},%
-    columns=flexible,%
-    framexleftmargin=.7mm,frame=shadowbox,%
-    rulesepcolor=\color{blue},%
-%    frame=single,%
-    backgroundcolor=\color{yellow!20},%
-    xleftmargin=1.2\fboxsep,%
-    xrightmargin=.7\fboxsep,%
-    numbers=left,numberstyle=\tiny\color{blue},%
-    numberblanklines=false,numbersep=7pt,%
-    language=VHDL%
-    }\lstset{#1}}{}
-\lstnewenvironment{VHDLmiddle}[1][]{%
-  \lstset{
-    basicstyle=\scriptsize\ttfamily\color{black},%
-    columns=flexible,%
-    framexleftmargin=.7mm,frame=shadowbox,%
-    rulesepcolor=\color{blue},%
-%    frame=single,%
-    backgroundcolor=\color{yellow!20},%
-    xleftmargin=1.2\fboxsep,%
-    xrightmargin=.7\fboxsep,%
-    numbers=left,numberstyle=\tiny\color{blue},%
-    numberblanklines=false,numbersep=7pt,%
-    language=VHDL%
-    }\lstset{#1}}{}
-\lstnewenvironment{VHDLsmall}[1][]{%
-  \lstset{
-    basicstyle=\tiny\ttfamily\color{black},%
-    columns=flexible,%
-    framexleftmargin=.7mm,frame=shadowbox,%
-    rulesepcolor=\color{blue},%
-%    frame=single,%
-    backgroundcolor=\color{yellow!20},%
-    xleftmargin=1.2\fboxsep,%
-    xrightmargin=.7\fboxsep,%
-    numbers=left,numberstyle=\tiny\color{blue},%
-    numberblanklines=false,numbersep=7pt,%
-    language=VHDL%
-    }\lstset{#1}}{}
-% pdf
-\hypersetup{%pdfpagemode=FullScreen,%
-            pdfauthor={Haiyong Zheng},%
-            pdftitle={Title},%
-            CJKbookmarks=true,%
-            bookmarksnumbered=true,%
-            bookmarksopen=false,%
-            plainpages=false,%
-            colorlinks=true,%
-            citecolor=green,%
-            filecolor=magenta,%
-            linkcolor=cyan,%red(default)
-            urlcolor=cyan}
-% section
-%http://tex.stackexchange.com/questions/34288/how-to-place-a-shaded-box-around-a-section-label-and-name
-\newcommand\titlebar{%
-\tikz[baseline,trim left=3.1cm,trim right=3cm] {
-    \fill [cyan!25] (2.5cm,-1ex) rectangle (\textwidth+3.1cm,2.5ex);
-    \node [
-        fill=cyan!60!white,
-        anchor= base east,
-        rounded rectangle,
-        minimum height=3.5ex] at (3cm,0) {
-        \textbf{\thesection.}
-    };
-}%
-}
-\titleformat{\section}{\Large\bf\color{blue}}{\titlebar}{0.1cm}{}
-% head/foot
-\setlength{\headheight}{15pt}
-\pagestyle{fancy}
-\fancyhf{}
-
-\chead{\color{black!50!green}Assignment \#3}
-
-%\lfoot{\color{blue!50!green}Dai Jialun}
-\cfoot{\color{blue!50!green}\href{http://vision.ouc.edu.cn/~zhenghaiyong}{CVBIOUC}}
-\rfoot{\color{blue!50!green}$\cdot$\ \thepage\ $\cdot$}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-
+%插入样式内容
+\input{Initial}
 %%---------------------------------------------------------------------
 \begin{document}
 %%---------------------------------------------------------------------
@@ -364,14 +172,63 @@ Local Response Normalization，局部响应归一化。完成``临近抑制''操
 \end{figure}
 
 \subsection{优化参数算法}
-SGD：随机梯度下降。
+梯度下降（Gradient Descent，GD）是最小化风险函数、损失函数的一种常用方法，随机梯度下降和批量梯度下降时两种迭代求解思路，二者在一定程度上都可以优化参数。
+\begin{itemize}
+\item BSD(Batch Gradient Descent)：批量梯度下降。~\\
+也叫最速梯度下降法，它的求解思路如下：\\
+(1)将J(theta)对theta求偏导，得到每个theta对应的的梯度：
+\begin{displaymath}
+\frac{\partial J(\theta)}{\partial {\theta_j}} =-\frac{1}{m}\sum_{i=1}^m(y^i-h_{\theta}(x^i))x^i_j
+\end{displaymath}
+(2)由于是要最小化风险函数，所以按每个参数theta的梯度负方向，来更新每个theta:
+\begin{displaymath}
+\theta_j=\theta_j+\frac{1}{m}\sum_{i=1}^m(y^i-h_{\theta}(x^i))x^i_j
+\end{displaymath}
+(3)从上面公式可以注意到，它得到的是一个全局最优解，但是每迭代一步，都要用到训练集所有的数据，如果m很大，那么这种方法的迭代速度会非常慢。
+\item SGD(Stochastic Gradient Descent)：随机梯度下降。~\\
+SGD是BSD的变种，使用SGD，将进行N次迭代，直到目标函数收敛，或者达某个既定的收敛界限。每次迭代都将对m个样本进行计算，计算量大，因此引入随机梯度下降法，他的求解思路如下：\\
+（1）上面的风险函数可以写成如下这种形式，损失函数对应的是训练集中每个样本的粒度，而上面批量梯度下降对应的是所有的训练样本：
+\begin{displaymath}
+J(\theta)=\frac{1}{m}\sum_{i=1}^{m}\frac{1}{2}(y^i-h_{\theta}(x^i))^2=\frac{1}{m}\sum_{i=1}^{m}\cos t(\theta,(x^i,y^i))
+\end{displaymath}
+\begin{displaymath}
+\cos t(\theta,(x^i,y^i))=\frac{1}{2}(y^i-h_{\theta}(x^i))^2
+\end{displaymath}
+（2）每个样本的损失函数，对theta求偏导得到对应梯度，来更新theta:
+\begin{displaymath}
+\theta_j=\theta_j+(y^i-h_{\theta}(x^i))^2{x^i_j}
+\end{displaymath}
+（3）随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经将theta迭代到最优解了，对比上面的批量梯度下降，迭代一次需要用到十几万训练样本，一次迭代不可能最优，如果迭代10次的话就需要遍历训练样本10次。但是，SGD伴随的一个问题是噪音较BGD要多，使得SGD并不是每次迭代都向着整体最优化方向。
+\end{itemize}
 
-BGD：批量梯度下降。
+对二者的总结:
 
-\subsection{Batch-Normalizetion}
+（1）批量梯度下降---最小化所有训练样本的损失函数，使得最终求解的是全局的最优解，即求解的参数是使得风险函数最小。
 
-\subsection{Prelu}
+（2）随机梯度下降---最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近。
+\subsection{Batch-Normalization}
+批量归一化的算法是Google在论文《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》中提出来的，根据这个算法，如果我们对每一层的数据都进行处理，训练时间和overfit程度可以降低一些。 文中使用了类似z-score的归一化方式：每一维度减去自身均值，再除以自身标准差，由于使用的是随机梯度下降法，这些均值和方差也只能在当前迭代的batch中计算，故作者给这个算法命名为Batch Normalization。
 
+Batch Normalization的加速作用体现在两个方面：一是归一化了每层和每维度的scale，所以可以整体使用一个较高的学习率，而不必像以前那样迁就小scale的维度；二是归一化后使得更多的权重分界面落在了数据中，降低了overfit的可能性，因此一些防止overfit但会降低速度的方法，例如dropout和权重衰减就可以不使用或者降低其权重。
+
+\subsection{PReLU}
+参数化修正线性单元PReLU, Parametric Rectified Linear Unit），是来自MRSA何恺明等研究员在论文《Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification》中提出的。神经网络已经出现几十年了，大家都默认使用 Sigmoid/Tanh 函数作为非线性单元，直到近几年大家才意识到 ReLU 更好（更适合优化，精度也更好）。修正神经元 (rectifier neuron) 是近期将深度神经网络应用于计算机视觉挑战时取得成功的关键要素之一。这篇文章中提出了一种新的修正线性单元（ReLU, Rectified Linear Unit），并将其称为参数化修正线性单元（PReLU, Parametric Rectified Linear Unit）。
+
+它的激活函数被定义为：
+\begin{displaymath}
+f(y_i) = max(0,y_i)+a_imin(0,y_i)
+\end{displaymath}
+
+其中 $a_i$ 是一个学习参数。下图是 ReLU 和 PReLU 的示意图:
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{PReLU}
+\caption{ReLU 和 PReLU 的示意图}
+%\label{fig:framework}
+\end{figure}
+
+该激活函数不仅可自适应获取修正参数，还可提高计算精度，且所需额外计算成本几乎可以忽略不计。
 
 \section{解决方案}
 \subsection{Caffe}

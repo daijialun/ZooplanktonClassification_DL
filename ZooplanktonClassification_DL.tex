@@ -123,11 +123,12 @@ OverFeat的选举网络是由ImageNet 1K数据集训练的，参加了ILSVRC 201
 %\label{fig:framework}
 \end{figure}
 
-\item[MP-CNN]  
 \end{description}
 
 \section{优化技巧}
 \subsection{Dropout}
+Dropout是指在模型训练时随机让网络某些隐含层节点的权重不工作，不工作的那些节点可以暂时认为不是网络结构的一部分，但是它的权重得保留下来，只是暂时不更新而已，因为下次样本输入时可能会工作。
+
 应用在全连接层，是一种引入噪声机制，避免过拟合的有效正规化方法。适用于样本数目数 $\ll$ 模型参数。对于每一个隐层的output，以50\%的概略将它们设置为0，不再对与forward或backward过程起作用，即迫使每个神经元不依赖某些特定神经元独立工作，从而学到更有用的特征。
 \begin{figure}[!ht]
   \centering 
@@ -220,7 +221,7 @@ J(\theta)=\frac{1}{m}\sum_{i=1}^{m}\frac{1}{2}(y^i-h_{\theta}(x^i))^2=\frac{1}{m
 \item 随机梯度下降---最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近。
 \end{itemize}
 
-\subsection{Batch-Normalization}
+\subsection{Batch-Normalization\cite{DBLP}}
 批量归一化的算法是Google在论文《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》中提出来的，根据这个算法，如果我们对每一层的数据都进行处理，训练时间和overfit程度可以降低一些。 文中使用了类似z-score的归一化方式：每一维度减去自身均值，再除以自身标准差，由于使用的是随机梯度下降法，这些均值和方差也只能在当前迭代的batch中计算，故作者给这个算法命名为Batch Normalization。
 
 Batch Normalization的加速作用体现在两个方面：一是归一化了每层和每维度的scale，所以可以整体使用一个较高的学习率，而不必像以前那样迁就小scale的维度；二是归一化后使得更多的权重分界面落在了数据中，降低了overfit的可能性，因此一些防止overfit但会降低速度的方法，例如dropout和权重衰减就可以不使用或者降低其权重。
@@ -437,6 +438,20 @@ AlexNet网络模型用5个卷积层和3个全连接层，其中包含了60M参�
 \item 重叠采样
 \end{itemize}
 \end{itemize}
+
+\section{实施计划}
+
+由于目前对于方案和优化技巧只是了解而已，因此我们决定不把大量的时间放在学习这些优化的算法上，我们准备从实际的问题入手，通过Caffe$+$AlexNet去做开发和实验，我们现在的问题在于确定训练集（跟老师讨论决定）。具体的计划暂定如下：
+
+\begin{itemize}
+\item 2015.07.06-2015.07.12
+	
+	完成第一次的训练集训练，并用训练好的特征进行分类，根据分类的效果确定改进方案。
+\item 2015.07.13-2015.07.18
+
+	根据改进方案完成第二次的训练，根据实际效果确认下一步的工作计划和方案
+\end{itemize}
+
 
 
 \bibliographystyle{plain}

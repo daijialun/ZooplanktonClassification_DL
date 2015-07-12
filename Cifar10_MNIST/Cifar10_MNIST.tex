@@ -13,31 +13,34 @@
 \maketitle\thispagestyle{fancy}
 %%---------------------------------------------------------------------
 \maketitle
-%\tableofcontents 
+%\tableofcontentsG
 \section{Cifar10}
-CIFAR-10数据集由10类总共60000张32$\times$32的彩色图像组成，其中每一类都有6000张图像。在60000张图像中，有50000张的训练图像与10000张的测试图像。
+\subsection{Cifar10介绍}！
+CIFAR-10数据集由10类总共60000张32$\times$32的彩色图像组成，其中每一类都有6000张图像。在60000张图像中，有50000张的训练图像与10000张的测试图像。如图Figure~\ref{fig:introduction}。
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.6\textwidth]{cifar10}
-\caption{cifar10}
-%\label{fig:framework}
+\caption{Cifar10数据集}
+\label{fig:introduction}
 \end{figure}
 
 数据集被分成5个训练组和1个测试组，每一组都有10000张图像。其中，测试组从10类中的每一类随机挑选出的1000张图像，即测试组中每一类图像数量相同。训练组从所剩下的图像中随机挑选，因此在某些训练组中，存在某一类中的图像可能比其他类图像多，即某个训练组中每一类图像数量可能不同。但是从整体上看，在5组训练组的合计中，每一类有5000张图像。
 
 另外在数据集中，每一类的图像都是独立存在，不存在有一张图像在两个类别中出现的情况。
 
-Cifar10数据集的版本：
+
+\subsection{Cifar10数据集版本与格式}
+Cifar10数据集版本：
 \begin{itemize}
 \item CIFAR-10 python version
 \item CIFAR-10 Matlab version
 \item CIFAR-10 binary version (suitable for C programs)
 \end{itemize}
 
-Python/Matlab版（cifar-10-batches-py / cifar-10-batches-mat）：在这里介绍了数据集的Matlab版本。Python版本的结构与其是相同的。
+{\color{blue} Python/Matlab版（cifar-10-batches-py / cifar-10-batches-mat）：}
 
-在下载的文档中，包含了{\scriptsize{data\_batch\_1}}，{\scriptsize{data\_batch\_2}}，{\scriptsize{data\_batch\_3}}，{\scriptsize{data\_batch\_4}}，{\scriptsize{data\_batch\_5}}，以及{\scriptsize{test\_batch}}。%每一个文件都是由Python的``cPickle''所产生的pickled对象。下面是Python程序，会打开一个文件并且返回一个目录。
+在这里介绍了数据集的Matlab版本。Python版本的结构与其是相同的。在下载的文档中，包含了{\scriptsize{data\_batch\_1}}，{\scriptsize{data\_batch\_2}}，{\scriptsize{data\_batch\_3}}，{\scriptsize{data\_batch\_4}}，{\scriptsize{data\_batch\_5}}，以及{\scriptsize{test\_batch}}。在Matlab上加载后，每一个组文件将会生成一个包含以下文件的文件夹：%每一个文件都是由Python的``cPickle''所产生的pickled对象。下面是Python程序，会打开一个文件并且返回一个目录。
 
 \begin{comment}
 \begin{python}
@@ -50,7 +53,7 @@ def unpickle(file)
 \end{python} 
 \end{comment}
 
-通过以上方式加载后，每一个组文件将会生成一个包含以下文件的文件夹：
+
 \begin{description}
 \item[data] 一个类型为unit8的10000$\times$3072的numpy矩阵。已知每一张图像都是3通道，大小为32$\times$32。这个矩阵的每一行存储一个32$\times$32图像的3个不同通道的像素值。每一行表示一张图像，刚开始的1024列（32$\times$32）表示红色通道像素值，接下来的1024列（32$\times$32）表示绿色通道像素值，最后的1024列（32$\times$32）表示蓝色通道像素值。图像是行优先存储的。%因此，data数组刚开始的32是第一行图像的红色通道值。
 \item[labels] 一个列表，一列包含了10000个数字，范围为0$\sim$9。在列表中，第$i$个数字表示在数组数据中，第$i$张图像的标注。
@@ -64,13 +67,13 @@ def unpickle(file)
 
 \begin{figure}[!ht]
   \centering 
-  \subfigure[]{ 
+  \subfigure[data]{ 
  %   \label{fig: } %% label for first subfigure 
     \includegraphics[width=0.6\textwidth]{data}} 
-  \subfigure[]{ 
+  \subfigure[labels]{ 
  %   \label{fig: result1: b} %% label for second subfigure 
     \includegraphics[width=0.14\textwidth]{labels}} 
-  \caption{ILSVRC 2013}
+  \caption{data\_batch\_1在Matlab下形式}
  % \label{fig: } %% label for entire figure 
 \end{figure}
 
@@ -95,13 +98,13 @@ def unpickle(file)
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.2\textwidth]{label_name}
-\caption{cifar10}
+\caption{label\_name}
 %\label{fig:framework}
 \end{figure}
 
-二进制版本的数据集（cifar-10-batches-bin）：
+{\color{blue} 二进制版本的数据集（cifar-10-batches-bin）：}
 
-二进制版本包含了{\scriptsize{data\_batch\_1.bin}}，{\scriptsize{data\_batch\_2.bin}}，{\scriptsize{data\_batch\_3.bin}}，{\scriptsize{data\_batch\_4.bin}}，{\scriptsize{data\_batch\_5.bin}}，以及{\scriptsize{test\_batch\_bin}}。每个文件的格式如下：
+二进制版本包含了{\scriptsize{data\_batch\_1.bin}}，{\scriptsize{data\_batch\_2.bin}}，{\scriptsize{data\_batch\_3.bin}}，{\scriptsize{data\_batch\_4.bin}}，{\scriptsize{data\_batch\_5.bin}}，以及{\scriptsize{test\_batch\_bin}}。在Caffe中，用{\footnotesize{get\_cifar10.sh}}自动获取的数据集就为二进制版本。每个文件的格式如下：
 
 \colorbox{gray}{  
 \vbox{  \scriptsize{
@@ -112,9 +115,9 @@ $\dots$
 <1 $\times$ label> <3072 $\times$ pixel>  }
 }}  
 
-也就是说，刚开始的第一列是训练或测试图像的标注，是一个范围在0$\sim$9之间的数字。接下来的3072列是图像3通道的像素值。最前面的1024列（32$\times$32）是红色通道的像素值，接下来的1024个数（32$\times$32）是绿色通道的像素值，最后的1024个数（32$\times$32）是蓝色通道的像素值。这些值是按行优先排列的。
+也就是说，刚开始的第一列是训练或测试图像的标注，是一个范围在0$\sim$9之间的数字。接下来的3072列是图像3通道的像素值。最前面的1024列（32$\times$32）是红色通道的像素值，接下来的1024列（32$\times$32）是绿色通道的像素值，最后的1024列（32$\times$32）是蓝色通道的像素值。这些值是按行优先排列的。
 
-每一个文件包含10000个这样像3073个列的图像行，即为10000$\times$3073。
+每一个文件包含10000个这样像3073列的图像行，即为形式为10000$\times$3073。
 
 另外，还有一个 {\scriptsize{batches.meta.txt}}的文件。这是一个ASCII文件，表示0$\sim$9之间的数字对应的各个类别名字。这仅仅是一个含有10个类别名字的列表，每一个一行。
 
@@ -126,13 +129,16 @@ $\dots$
   \subfigure[]{ 
  %   \label{fig: result1: b} %% label for second subfigure 
     \includegraphics[width=0.31\textwidth]{first2}} 
-  \caption{ILSVRC 2013}
- % \label{fig: } %% label for entire figure 
+  \caption{One image in Cifar10}
+  \label{fig:origin} %% label for entire figure 
 \end{figure}
+
+在Cifar10数据集中，图像只以像素值形式的数据表示。如果要查看图像，需要经过程序的变换，转换成可打开与显示的图像格式。如图Figure~\ref{fig:origin}。
 
 
 
 \section{MNIST}
+\subsection{MNIST介绍}
 MNIST数据集是手写数字图像，其训练集有60000张图像，测试集有10000张图像。这只是一个更大的数据集NIST的一个子集。这些数字图像已经经过尺寸的规范化与在图像的置中心处理。
 
 这个数据集适合一些人想用学习技术以及模式识别方法来处理真实世界的数据，而且不需要花太多功夫在预处理和格式化方面的工作上。
@@ -151,10 +157,36 @@ MNIST数据集是由NIST的Special Database 3 （SD3）和Special Database 1（S
 
 MNIST训练集是由SD-3的30000张图像和SD-1的300000张图像组成。测试集是由SD-3的5000张图像和SD-1的5000张图像组成。训练集中所包含的图像是从大约250个人中收集到的。基本可以判定训练集与测试集的数字是不同的人所写的。
 
-SD-1是由500个不同的人所写的58527张数字图像。在SD-1中，数据是杂乱无章地排列的。这个排列方式与SD-3不同，在SD-3中每个人所写的数字图像是按序列排列的。我们可用人工方法来分辨SD-1的数字图像由哪个人缩写。我们将SD-1分为两部分：由前250个人所写的数字图像放在训练集中，剩下的250个人所写数字放在测试集中。因此，我们有了两个子集，每个子集有大约30000张图像。新的训练集从SD-3中的\#0开始抽取足够多的图像，形成一个60000张的训练图像。与其相似，新的测试集是由SD-3中的\#35000开始，形成一个60000的测试图像。只有测试集中的10000张测试图像（从SD-1中的5000张图像和从SD-3中的5000张图像）在这里是可用。当然，60000张的训练图像也是可用的。
+SD-1是由500个不同的人所写的58527张数字图像。在SD-1中，数据是杂乱无章地排列的。这个排列方式与SD-3不同，在SD-3中每个人所写的数字图像是按序列排列的。我们可用人工方法来分辨SD-1的数字图像由哪个人缩写。我们将SD-1分为两部分：由前250个人所写的数字图像放在训练集中，剩下的250个人所写数字放在测试集中。因此，我们有了两个子集，每个子集有大约30000张图像。新的训练集从SD-3中的\#0开始提取图像30000张图像，与之前SD-1中一个子集的30000张图像合并，组成一个60000张的训练集。与其相似，新的测试集是由SD-3中的\#35000开始提取图像，与之前SD-1中另一个子集的图像合并，组成一个大的测试图像。但是在这里只需要测试集中的10000张测试图像（从SD-1中的5000张图像和从SD-3中的5000张图像）。当然，60000张的训练图像也是完全可用的。
 
-MNIST数据库的文件格式：
 
-数据存储在一个非常简单的用来存放向量和多维矩阵的文件格式中。在文件中所有的整数都
+\subsection{MNIST数据库格式}
+
+数据存储在一个用来存放向量和多维矩阵的文件格式中。MNIST数据库主要包含四个文件：{\footnotesize{train-images-idx3-ubyte.gz}}，{\footnotesize{train-labels-idx1-ubyte.gz}}，{\footnotesize{t10k-images-idx3-ubyte.gz}}，{\footnotesize{t10k-labels-idx1-ubyte.gz}}。在Caffe中，用{\footnotesize{get\_mnist.sh}}自动获取的数据集就是上述形式。训练集包含了60000张图像，测试集包含了10000张图像。
+
+\begin{figure}[!ht]
+  \centering 
+  \subfigure[]{ 
+ %   \label{fig: } %% label for first subfigure 
+    \includegraphics[width=0.31\textwidth]{mnist1}} 
+  \subfigure[]{ 
+ %   \label{fig: result1: b} %% label for second subfigure 
+    \includegraphics[width=0.3\textwidth]{mnist2}} 
+  \caption{MNIST数据库训练集内容}
+  \label{fig: } %% label for entire figure 
+\end{figure}
+
+在MNIST数据库中，图像数据以上述形式存储。如果要查看图像，需要经过程序的变换，转换成可打开与显示的图像格式。如图Figure~\ref{fig:mnist}。
+\begin{figure}[!ht]
+  \centering 
+  \subfigure[]{ 
+ %   \label{fig: } %% label for first subfigure 
+    \includegraphics[width=0.3\textwidth]{mnist_example1}} 
+  \subfigure[]{ 
+ %   \label{fig: result1: b} %% label for second subfigure 
+    \includegraphics[width=0.3\textwidth]{mnist_example2}} 
+  \caption{One image in MNIST}
+  \label{fig:mnist} %% label for entire figure 
+\end{figure}
 %%---------------------------------------------------------------------
 \end{document}

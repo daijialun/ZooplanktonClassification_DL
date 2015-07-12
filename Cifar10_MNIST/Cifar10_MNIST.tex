@@ -17,18 +17,29 @@
 \section{Cifar10}
 CIFAR-10数据集由10类总共60000张32$\times$32的彩色图像组成，其中每一类都有6000张图像。在60000张图像中，有50000张的训练图像与10000张的测试图像。
 
-数据集被分成5个训练组和1个测试组，每一组都有10000张图像。测试组中包含了从每一类中随机挑选出的1000张图像。训练组从所剩下的图像中随机挑选，因此在某些训练组中，某一类中的图像可能比其他类图像多。另外从整体上看，5组训练组包含了每一类的5000张图像。
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\textwidth]{cifar10}
+\caption{cifar10}
+%\label{fig:framework}
+\end{figure}
 
-数据集中，每一类的图像都是独立存在，没有相互包含的情况。
+数据集被分成5个训练组和1个测试组，每一组都有10000张图像。其中，测试组从10类中的每一类随机挑选出的1000张图像，即测试组中每一类图像数量相同。训练组从所剩下的图像中随机挑选，因此在某些训练组中，存在某一类中的图像可能比其他类图像多，即某个训练组中每一类图像数量可能不同。但是从整体上看，在5组训练组的合计中，每一类有5000张图像。
 
-用cuda-convnet实现的卷积神经网络，其系统在没有数据增强的情况下，测试错误为18\%；有数据增强的情况下，测试错误为11\%。
+另外在数据集中，每一类的图像都是独立存在，不存在有一张图像在两个类别中出现的情况。
 
-数据集的布局：
+Cifar10数据集的版本：
+\begin{itemize}
+\item CIFAR-10 python version
+\item CIFAR-10 Matlab version
+\item CIFAR-10 binary version (suitable for C programs)
+\end{itemize}
 
-Python/Matlab版：在这里介绍了数据集的Python版本。Matlab版本的布局与其是相同的。
+Python/Matlab版（cifar-10-batches-py / cifar-10-batches-mat）：在这里介绍了数据集的Matlab版本。Python版本的结构与其是相同的。
 
-在下载的文档中，包含了{\scriptsize{data\_batch\_1}}，{\scriptsize{data\_batch\_2}}，{\scriptsize{data\_batch\_3}}，{\scriptsize{data\_batch\_4}}，{\scriptsize{data\_batch\_5}}，以及{\scriptsize{test\_batch}}。每一个文件都是由Python的``cPickle''所产生的pickled对象。下面是Python程序，会打开一个文件并且返回一个目录。
+在下载的文档中，包含了{\scriptsize{data\_batch\_1}}，{\scriptsize{data\_batch\_2}}，{\scriptsize{data\_batch\_3}}，{\scriptsize{data\_batch\_4}}，{\scriptsize{data\_batch\_5}}，以及{\scriptsize{test\_batch}}。%每一个文件都是由Python的``cPickle''所产生的pickled对象。下面是Python程序，会打开一个文件并且返回一个目录。
 
+\begin{comment}
 \begin{python}
 def unpickle(file)
   Import cPickle
@@ -37,19 +48,58 @@ def unpickle(file)
   fo.close()
   return dict
 \end{python} 
+\end{comment}
 
 通过以上方式加载后，每一个组文件将会生成一个包含以下文件的文件夹：
 \begin{description}
-\item[data] 一个类型为unit8的10000$\times$3072的numpy矩阵。这个矩阵的每一行存储一个32$\times$32的彩色图像，刚开始的1024个数（32$\times$32）表示红色通道的值，接下来的1024个数（32$\times$32）表示绿色通道，最后的1024个数（32$\times$32）表示蓝色通道。图像是行优先存储的，因此数组刚开始的32是第一行图像的红色通道值。
-\item[labels] 一个列表包含10000个数字，范围为0~9。在目录中，第i个数字表示在数组数据中，第i个图像的标注。
+\item[data] 一个类型为unit8的10000$\times$3072的numpy矩阵。已知每一张图像都是3通道，大小为32$\times$32。这个矩阵的每一行存储一个32$\times$32图像的3个不同通道的像素值。每一行表示一张图像，刚开始的1024列（32$\times$32）表示红色通道像素值，接下来的1024列（32$\times$32）表示绿色通道像素值，最后的1024列（32$\times$32）表示蓝色通道像素值。图像是行优先存储的。%因此，data数组刚开始的32是第一行图像的红色通道值。
+\item[labels] 一个列表，一列包含了10000个数字，范围为0$\sim$9。在列表中，第$i$个数字表示在数组数据中，第$i$张图像的标注。
 \end{description}
 
-数据集包含了另外一个{\scriptsize{batches.meta}}文件。它也包含了一个Python目录对象，有以下内容：
+数据集包含了另外一个{\scriptsize{batches.meta}}文件。它也包含了一个对象，有以下内容：
 \begin{description}
-\item[label\_names] 一个含有10个目标的列表，对于上述标注数组，其给了数字标注有意义的名字。例如，label\_names[0]=``airplane''
+\item[label\_names] 一个含有10个目标的列表，其描述了标注数字对应具体的类别名字。例如，label\_names[0]=``airplane''
 \end{description}
 
-二进制版本的数据集（cifar-10-batches-bin）
+
+\begin{figure}[!ht]
+  \centering 
+  \subfigure[]{ 
+ %   \label{fig: } %% label for first subfigure 
+    \includegraphics[width=0.6\textwidth]{data}} 
+  \subfigure[]{ 
+ %   \label{fig: result1: b} %% label for second subfigure 
+    \includegraphics[width=0.14\textwidth]{labels}} 
+  \caption{ILSVRC 2013}
+ % \label{fig: } %% label for entire figure 
+\end{figure}
+
+
+\begin{comment}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{data}
+\caption{cifar10}
+%\label{fig:framework}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.2\textwidth]{labels}
+\caption{cifar10}
+%\label{fig:framework}
+\end{figure}
+\end{comment}
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.2\textwidth]{label_name}
+\caption{cifar10}
+%\label{fig:framework}
+\end{figure}
+
+二进制版本的数据集（cifar-10-batches-bin）：
 
 二进制版本包含了{\scriptsize{data\_batch\_1.bin}}，{\scriptsize{data\_batch\_2.bin}}，{\scriptsize{data\_batch\_3.bin}}，{\scriptsize{data\_batch\_4.bin}}，{\scriptsize{data\_batch\_5.bin}}，以及{\scriptsize{test\_batch\_bin}}。每个文件的格式如下：
 
@@ -62,33 +112,46 @@ $\dots$
 <1 $\times$ label> <3072 $\times$ pixel>  }
 }}  
 
-换句话说，刚开始的比特是第一张图像的标注，是一个范围在0~9之间的数字。接下来的3072比特是图像像素值。开始的1024个数（32$\times$32）是红色通道的值，接下来的1024个数（32$\times$32）是绿色通道的值，最后的1024个数（32$\times$32）是蓝色通道的值。这些值是按行优先排列的，因此最初的32比特是图像的第一行的红色通道值。
+也就是说，刚开始的第一列是训练或测试图像的标注，是一个范围在0$\sim$9之间的数字。接下来的3072列是图像3通道的像素值。最前面的1024列（32$\times$32）是红色通道的像素值，接下来的1024个数（32$\times$32）是绿色通道的像素值，最后的1024个数（32$\times$32）是蓝色通道的像素值。这些值是按行优先排列的。
 
-每一个文件包含10000个这样3073个比特的图像``行''，尽管在文件中没有特别划分这些行的界限。因此每个文件都应该有30730000比特这么长。
+每一个文件包含10000个这样像3073个列的图像行，即为10000$\times$3073。
 
-另外，还有一个 {\scriptsize{batches.meta.txt}}的文件。这是一个ASCII文件，表示每一个类别名字各自匹配范围在0~9之间的数字。这仅仅是一个10类别名字的列表，每一个一行。在第i行的类别名对应数字标号i。
+另外，还有一个 {\scriptsize{batches.meta.txt}}的文件。这是一个ASCII文件，表示0$\sim$9之间的数字对应的各个类别名字。这仅仅是一个含有10个类别名字的列表，每一个一行。
+
+\begin{figure}[!ht]
+  \centering 
+  \subfigure[]{ 
+ %   \label{fig: } %% label for first subfigure 
+    \includegraphics[width=0.29\textwidth]{first1}} 
+  \subfigure[]{ 
+ %   \label{fig: result1: b} %% label for second subfigure 
+    \includegraphics[width=0.31\textwidth]{first2}} 
+  \caption{ILSVRC 2013}
+ % \label{fig: } %% label for entire figure 
+\end{figure}
+
 
 
 \section{MNIST}
-MNIST数据集是手写数字图像，其训练集有60000张图像，测试集有10000张图像。这只是一个更大的数据集NIST的一个子集。这些数字图像已经经过尺寸的正规化与在固定大小图像中的置中心处理。
+MNIST数据集是手写数字图像，其训练集有60000张图像，测试集有10000张图像。这只是一个更大的数据集NIST的一个子集。这些数字图像已经经过尺寸的规范化与在图像的置中心处理。
 
 这个数据集适合一些人想用学习技术以及模式识别方法来处理真实世界的数据，而且不需要花太多功夫在预处理和格式化方面的工作上。
 
 这个数据集总共有4个文件：
-\begin{description}
-\item[{\footnotesize{train-images-idx3-ubyte.gz}}] {\footnotesize{training set images (9912422 bytes)}} 
-\item[{\footnotesize{train-labels-idx1-ubyte.gz}}] {\footnotesize{training set labels (28881 bytes)}} 
-\item[{\footnotesize{t10k-images-idx3-ubyte.gz}}] {\footnotesize{test set images (1648877 bytes)}} 
-\item[{\footnotesize{t10k-labels-idx1-ubyte.gz}}] {\footnotesize{test set labels (4542 bytes)}}
-\end{description}
+\begin{itemize}
+\item \textbf{{\footnotesize{train-images-idx3-ubyte.gz}}} {\footnotesize{training set images (9912422 bytes)}} 
+\item \textbf{{\footnotesize{train-labels-idx1-ubyte.gz}}} {\footnotesize{training set labels (28881 bytes)}} 
+\item \textbf{{\footnotesize{t10k-images-idx3-ubyte.gz}}} {\footnotesize{test set images (1648877 bytes)}} 
+\item \textbf{{\footnotesize{t10k-labels-idx1-ubyte.gz}}} {\footnotesize{test set labels (4542 bytes)}}
+\end{itemize}
 
-在NIST中原始的黑白图像，为了保持长宽比，图像经过尺寸正规化处理变为20$\times$20的像素框。结果图像是灰度保真图，使用了规范化算法处理。而且，图像是在28$\times$28的图像中心位置。
+在NIST中的手写数字图像，都为灰度保真图，而且经过规范化处理，图像大小为28$\times$28。
 
-MNIST数据集是由NIST的Special Database 3 和Special Database 1所组成，二者包含了手写数字的二值图像。在NIST中，它将SD-3作为训练集，SD-1作为测试集。然而，SD-3比SD-1更清洗，更容易识别。理由可能是因为SD-3是从Census Bureau的员工处收集的，而Sd-1是从高中生处收集的。从学习实验中得出可靠的结论要求结果与训练集的选择无关，并且测试样本的完整数据集。因此，必须通过混合NIST数据集来建立一个全新的数据集。‘
+MNIST数据集是由NIST的Special Database 3 （SD3）和Special Database 1（SD1）所组成，二者包含了手写数字的二值图像。NIST中最初将SD-3作为训练集，SD-1作为测试集。然而，SD-3比SD-1更清晰，更容易识别。主要是因为SD-3是从Census Bureau的员工处收集的，而SD-1是从高中生处收集的。从学习实验中得出可靠的结论要求结果与训练集的选择无关，并且测试样本是完整数据集。因此，必须通过混合NIST数据集来建立一个全新的数据集。
 
-MNIST训练集是由SD-3的30000张图像和SD-1的300000张图像组成。测试集是由SD-3的5000张图像和SD-1的5000张图像组成。60000张的训练集所包含的例子从大约250个人中收集到的。因此，我们可以确定训练集与测试集的数字是不同的人所写的。
+MNIST训练集是由SD-3的30000张图像和SD-1的300000张图像组成。测试集是由SD-3的5000张图像和SD-1的5000张图像组成。训练集中所包含的图像是从大约250个人中收集到的。基本可以判定训练集与测试集的数字是不同的人所写的。
 
-SD-1是由500个不同的人所写的58527张数字图像。与SD-3不同，在SD-3中每个人所写的数字图像按序列排放，而在SD-1中，数据是杂乱无章的。人工分辨SD-1是可行的，我们用这些信息来分开所写人。我们将SD-1分为两部分：由前250位个人的数字作为型的训练集，剩下的250个人所写数字放在测试集中。因此，我们有了两个子集，每个自己有大约30000张图像。新的训练集从SD-3中的\#0开始抽取足够多的图像，形成一个60000张的训练图像。与其相似，新的测试集是由SD-3中的\#35000开始，形成一个60000的测试图像。只有测试集中的10000张测试图像（从SD-1中的5000张图像和从SD-3中的5000张图像）在这里是可用。当然，60000张的训练图像也是可用的。
+SD-1是由500个不同的人所写的58527张数字图像。在SD-1中，数据是杂乱无章地排列的。这个排列方式与SD-3不同，在SD-3中每个人所写的数字图像是按序列排列的。我们可用人工方法来分辨SD-1的数字图像由哪个人缩写。我们将SD-1分为两部分：由前250个人所写的数字图像放在训练集中，剩下的250个人所写数字放在测试集中。因此，我们有了两个子集，每个子集有大约30000张图像。新的训练集从SD-3中的\#0开始抽取足够多的图像，形成一个60000张的训练图像。与其相似，新的测试集是由SD-3中的\#35000开始，形成一个60000的测试图像。只有测试集中的10000张测试图像（从SD-1中的5000张图像和从SD-3中的5000张图像）在这里是可用。当然，60000张的训练图像也是可用的。
 
 MNIST数据库的文件格式：
 

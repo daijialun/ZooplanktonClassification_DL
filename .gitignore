@@ -11,4 +11,9 @@
 tmp
 CODES
 
+CaffeTrian/01_prepare/data
+CaffeTrian/01_prepare/label
+CaffeTrian/01_prepare/lmdb
+
+
 *~

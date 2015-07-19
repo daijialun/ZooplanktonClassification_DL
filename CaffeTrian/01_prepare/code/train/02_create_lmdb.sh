@@ -3,10 +3,10 @@
 # N.B. set the path to the imagenet train + val data dirs
 
 OUT_PATH=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/lmdb
-DATA=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/label
+DATA=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/label/train
 TOOLS=/home/wubin/Workspace/project/caffe/caffe-master_150708/build/tools
 
-TRAIN_DATA_ROOT=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/data/
+TRAIN_DATA_ROOT=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/data/train/
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.

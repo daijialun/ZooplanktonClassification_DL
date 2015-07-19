@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DATA_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/data
-LABEL_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/label
+DATA_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/data/test
+LABEL_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/label/test
 label=0
 for i in `ls $DATA_DIR`; do
 	echo $i >> $LABEL_DIR/synsets.txt;

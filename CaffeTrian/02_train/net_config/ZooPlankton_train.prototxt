@@ -8,7 +8,7 @@ layer {
     phase: TRAIN
   }
   transform_param {
-    mean_file: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/image_mean/ZooPlankton_mean.binaryproto"
+    mean_file: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/image_mean/ZooPlankton_train_mean.binaryproto"
   }
   data_param {
     source: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/lmdb/ZooPlankton_train_lmdb"
@@ -25,10 +25,10 @@ layer {
     phase: TEST
   }
   transform_param {
-    mean_file: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/image_mean/ZooPlankton_mean.binaryproto"
+    mean_file: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/image_mean/ZooPlankton_val_mean.binaryproto"
   }
   data_param {
-    source: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/lmdb/ZooPlankton_train_lmdb"
+    source: "/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/lmdb/ZooPlankton_val_lmdb"
     batch_size: 100
     backend: LMDB
   }

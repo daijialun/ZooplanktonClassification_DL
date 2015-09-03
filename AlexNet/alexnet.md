@@ -122,10 +122,23 @@
 
 - 小数量的权值衰减对模型的学习是很重要的，即weight decay不仅仅是regularizer，还降低了模型的训练错误率。
 
-- 在每一层初始化权值，用偏差为0.01的zero-mean Gaussian。用constant=1初始化2，4和5层卷积以及全连接层。通过对ReLU提供整输入，加速了learning。用constant=0初始化在剩下的层
+- 在每一层初始化权值，用偏差为0.01的zero-mean Gaussian。用constant=1初始化2，4和5层卷积以及全连接层。通过对ReLU提供整输入，加速了learning。用constant=0初始化剩下的层
 
+- 所有层都使用相同的learning rate，在训练时手动调整的。当错误率停止时，将learning rate缩小10倍。learning rate初始值为0.01，缩小3次停止
 
+### Results
 
+- ILSVRC2010，top-1和top-5的错误率为37.5%和17.0%
+
+- ILSVRC2012，top-1和top-5的错误率为40.7%和18.2%
+
+- 在ImageNet2011 pre-trained的模型，fine-tune在ILSVRC上，top-1和top-5的错误率为39.0%和16.6%
+
+### Discussion
+
+- 如果移去一层网络，网络正确率将会下降
+
+- 没有使用任何无监督训练，特别是如果是得到足够的计算能力来提升网络规模，却无法得到相对应的标记数据的提升
 
 
 

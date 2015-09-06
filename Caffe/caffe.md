@@ -363,3 +363,13 @@ Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy�
 	
 - Fine-tuning的技巧(tricks)
 
+	- 从最后一层开始
+		- layers有基础的learning rate: param{lr_mult: 1}
+		- 为了快速优化，只对最后一层进行操作；通过设置lr_mult=0来确定一个参数，避免出现early divergence
+		- 如果效果足够好就停止调整，否则就继续
+	
+	- 降低学习率
+	
+		- 以10x或100x降低solver学习率
+		- 保持pre-training的初始化，避免出现divergence
+	

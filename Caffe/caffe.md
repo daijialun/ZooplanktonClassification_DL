@@ -1,5 +1,7 @@
 # Caffe解读
 
+## Caffe代码层次
+
 - blob中的信息是caffe用来存储、关联与操作的。对于整个框架来说，blob是标准排列和统一内存接口的。
     
     （基础的数据结构，保存学习到的参数以及网络传输过程中产生数据的类）
@@ -122,3 +124,155 @@
         solver_mode: GPU
         net: "train_val.prototxt"
         solver_type: SGD
+        
+## Layers具体分析 
+
+
+### *Vision Layers*
+
+#### Convolution
+
+- Layer type: Convolution
+
+- CPU implementation: convolution_layer.cpp
+
+- CUDA GPU implementation: convolution_layer.cu
+ 
+#### Pooling
+
+- 池化
+
+ - Layer type: Pooling
+
+- CPU implementation: pooling_layer.cpp
+
+- CUDA GPU implementation: pooling_layer.cu
+
+#### Local Response Normalization ( LRN )
+ 
+- 局部响应归一化
+
+- Layer type: LRN
+
+- CPU implementation: lrn_layer.cpp
+
+- CUDA GPU implementation: lrn_layer.cu
+
+- Parameters:
+
+    - norm_region: 选择对相邻通道间（ACROSS_CHANNELS）归一化还是通道内空间区域（WITHIN_CHANNEL）归一化，默认为ACROSS_CHANNELS
+    
+     - local_size: 对ACROSS表示需要求和的通道间数量；对WITHIN表示需要求和的区间区域的边长
+
+    - 局部响应归一化完成“临近抑制”操作，对局部输入区域进行归一化
+
+
+### *Loss Layers*
+
+#### Softmax
+
+- Layer type: SoftmaxWithLoss
+
+- 计算输入中，softmax的多项式逻辑损失，在数学上，提供了更稳定的梯度
+
+#### Sum-of-Squares / Euclidean
+
+- Layer type: EuclideanLoss
+
+#### Hinge / Margin
+
+- Layer type: HingeLoss
+
+- CPU implementation: hinge_loss_layer.cpp
+
+#### Sigmoid Cross-Entropy
+
+#### Infogain
+
+#### Accuracy and Top-k
+
+Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy实际上不是Loss，没有反向步骤。
+
+### *Activation / Neuron Layers*
+
+通常，Activation / Neuron Layers是元素级操作，将底层blob生成同规模的顶层blob
+
+#### ReLU / Rectified-Linear and Leaky-ReLU（常用）
+
+- Layer type: ReLU
+
+- CPU implementation: relu_layer.cpp
+
+- CUDA GPU implementation: relu_layer.cu
+
+#### Sigmoid
+
+- Layer type: sigmoid
+
+- CPU implementation: sigmoid_layer.cpp
+
+- CUDA GPU implementation: sigmoid_layer.cu
+
+#### TanH / Hyperbolic Tangent
+
+- Layer type: TanH
+
+- CPU implementation: tanh_layer.cpp
+
+- CUDA GPU implementation: tanh_layer.cu
+
+#### Absolute Value
+#### Power
+#### BNLL
+
+
+### *Data Layers*
+
+数据通过data layers进入Caffe，data layers位于网络底层。数据可从内存中直接获取有效的数据库格式（LevelDB或LMDB）。如果效率不是主要因素时，可从硬盘中读取HDF5格式或者普通图片格式。
+
+通常的输入预处理（mean subtraction, scaling, random cropping , mirroring）可通过*TransformationParameters*来使用。
+
+#### Database
+
+- Layer type: Data
+
+- Parameters:
+
+    - backend: 选择LEVELDB或者LMDB
+    
+#### In-Memory
+#### HDF5 Input
+#### ImageData
+#### Windows
+#### Dummy
+
+
+### *Common Layers*
+
+#### Inner Product
+
+- Layer type: TanH
+
+- CPU implementation: inner_prouct_layer.cpp
+
+- CUDA GPU implementation:  inner_prouct_layer.cu
+
+#### Splitting
+#### Flattening
+#### Reshape
+#### Concatenation
+#### Slicing
+#### Elementwise Operations
+#### Argmax
+#### Softmax
+#### Mean-Variance Normalization
+
+## 其他说明
+
+- prototxt (protocol buffer definition file)
+    
+    protoculbuffe是google的一种数据交换格式，独立于语言和平台，为一种二进制文件，比使用xml进行数据交换快速，可用于网络传输、配置文件、数据存储等诸多领域
+    
+    prototxt主要是记录模型结构。另外，**caffe的layers和其参数主要定义在caffe.proto这protocol buffer definition中。** caffe.proto的路径在./src/caffe/proto
+  
+- 在卷积层，每一个filter对应输出层的一个feature map

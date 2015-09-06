@@ -283,7 +283,9 @@ Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy�
 
 5. 最后，想更深层次学习，自己重新编写Caffe，重新构建自己的框架
 
-### 其他
+## 其他说明
+
+
 - prototxt (protocol buffer definition file)
     
     protoculbuffe是google的一种数据交换格式，独立于语言和平台，为一种二进制文件，比使用xml进行数据交换快速，可用于网络传输、配置文件、数据存储等诸多领域
@@ -291,3 +293,73 @@ Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy�
     prototxt主要是记录模型结构。另外，**caffe的layers和其参数主要定义在caffe.proto这protocol buffer definition中。** caffe.proto的路径在./src/caffe/proto
   
 - 在卷积层，每一个filter对应输出层的一个feature map
+
+- 通过用对*param*设置同样的名字，可共享其参数。		
+
+		layer:{
+		name:'innerproduct1'
+		param:'shareweights'
+		bottom:'data'
+		top:'innerproduct1'}
+		layer:{
+		name:'innerproduct2'
+		param:'shareweights'
+		bottom:'data'
+		top:'innerproduct2'}
+	
+### 主要流程
+
+- 将数据转为为caffe-mat，有lmdb, leveldb, hdf5, mat, list of images
+
+- 定义网络Net
+
+- 配置解Solver
+
+- 进行训练求解
+
+		caffe train -solver solver.prototxt -gpu -0
+		
+- 参考例子
+
+	- examples/mnist,cifar10,imagenet
+	
+	- examples/*.ipynb
+	
+	- model/*
+
+
+### Pre-train和Fine-tune
+
+通过将针对其他问题所训练好的模型，即pre-train模型；进行一点的修改，用来解决我们目前的问题，即fine-tune。这里主要参考了[Caffe主页上的文档](https://docs.google.com/presentation/d/1UeKXVgRvvxg9OUdh_UiC5G71UMscNPlvArsWER41PsU/edit#slide=id.gc2fcdcce7_216_408)	
+
+- 将pre-trained模型，通过fine-tunes实现到新的任务中，在模型定义中，修改部分内容
+
+	- 将*data_param{source:"ilsvrc12_train_lmdb"}*改为*data_param{source:"style_train_lmdb"}*
+	- 将*name:"fc8"*改为*name:"fc8-style"*；
+	- 将*num_output:1000*改为*num_output:20*
+	
+- 输入模型与模型的解，进行调整
+
+
+		> caffe train -solver models/finetune_flickr_style/solver.prototxt \
+		-weight bvlc_reference_caffenet.caffemodel
+		
+	在pycaffe中的步骤为：
+	
+		pretrain_net=caffe.Net("net.prototxt","net.caffemodel")
+		solver=caffe.SGDSolver("solver.prototxt")
+		solver.net.copy_from(pretrained_net)
+		solver.solve()
+		
+- fine-tuning是将特征转化为特别的可识别性质(style recognition)
+
+	fine-tune适用于：
+	
+	- 更robust优化与好的初始化
+		
+	- 需要更少的数据
+	
+	- 更快的学习
+	
+- Fine-tuning的技巧(tricks)
+

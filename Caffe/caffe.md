@@ -372,4 +372,58 @@ Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy�
 	
 		- 以10x或100x降低solver学习率
 		- 保持pre-training的初始化，避免出现divergence
+		
+### 整体结构
+
+caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, blob, solver。参考[Deep learning in Practice](http://blog.csdn.net/abcjennifer/article/details/46424949)
+
+- net.cpp
+	
+  net定义网络，整个网络中有很多layers，net.cpp负责**计算(computation)**网络在训练过程中的forwad,backward过程，即计算forward/backward过程中各层的参数
+	
+- layers.cpp
+
+	在src/caffe/layers中的层，在protobuffer中调用时包含各属性（name type, layer-specific parameters） ,其中**.proto文件中定义message类型，.prototxt或binaryproto文件中定义message的值**。定义一个layer需要定义其setup, forward和backward过程
+	
+- blob.cpp
+
+	net中的数据和求导结果通过4维的blob传递。一个layer有很多blobs
+	
+- solver.cpp
+
+	结合loss，用gradient更新weights。主要函数：Init(), Solve(), ComputeUpdateValue(), Snapshot()等。三种solver：AdaGradSolver, SGDSolver和NesterovSolver可供选择
+	
+- Protocol buffer
+
+	protocol buffer在.proto文件中定义message类型，.prototxt或.binaryproto文件中定义message的值
+	
+	- Caffe所有message定义在src/caffe/protp/caffe.proto中
+	- Experimet中主要用protocol_buffer.solver和model，分别定义solver参数（学习率等）和model（网络结构）
+	
+	- 技巧：冻结一层不参与训练，设置blobs_lr=0；对于图像，读取数据尽量别用HDF5Layer
+	
+- 训练基本流程
+
+	- 数据处理（转换格式）
+	- 定义网络结构
+	- 配置solver
+	- 训练 
+	
+			> caffe train -solver solver.prototxt -gpu 0
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

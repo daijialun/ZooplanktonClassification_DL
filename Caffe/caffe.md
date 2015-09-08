@@ -473,6 +473,48 @@ caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, bl
 
 - solvers有SGD, ADAGRAD和NESTEROV
 
+- The solver:
+
+	- 创建网络来学习，测试网络来评价
+	- 通过调用forward/backward来迭代优化，更新参数
+	- 周期性评价该测试网络
+	- 通过优化来快速展示model与slover state
+	
+- Where each iteration
+
+	- forward计算输出与loss
+	- backward计算梯度
+	- 根据solver方法，将梯度合并到参数更新中
+	- 根据learning, history和method，更新solver state
+	
+- 实际的weight更新是由slover实现的，再应用到net参数中
+
+- solver中weight的快照以及其state，分别由`Solver::Snapshot()`与`Solver::SnapshotSolverState()`实现。weight的快照允许训练从某一点继续，由`Solver::Restore()`实现
+
+- weights保存没有拓展名，而solver state用solverstate拓展名保存。二者都有`_iter_N`后缀作为迭代次数快照
+
+- snapshotting是在solver定义的prototxt中
+
+### Caffe Model Zoo
+
+- 模型可用来解决回归，大规模可视化分类，图像相似性等问题
+
+- model zoo frameword：
+	- 包含Caffe模型信息的标准格式
+	- 从Github上上传/下载模型信息的工具，下载已训练好的二进制caffemodel文件
+	- 分享模型信息的wiki页面
+	
+- 获得已训练的模型方式：
+
+		> python script/download_model_binary.py <dirname>
+		
+	<dirname>具体如下：
+	-model/bvlc_refe 
+
+
+
+
+
 
 	
 	

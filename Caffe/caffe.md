@@ -352,7 +352,7 @@ Accuracy对输出所对应的目标的准确度，通过分数表达。Accuracy�
             > ./script/download_model_binary.py module/bvlc_reference_caffenet
             
             
-         -gpu 0 表示使用CPU模式
+         -gpu 0 表示使用CPU模型；-gpu 2表示使用两个GPU
 
 ## 其他说明
 
@@ -509,12 +509,92 @@ caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, bl
 		> python script/download_model_binary.py <dirname>
 		
 	<dirname>具体如下：
-	-model/bvlc_refe 
+	-model/bvlc_reference_caffenet
+	AlexNet微小变动的版本
+	
+	- model/bvlc_alexnet
+	- model/bvlc_reference_rcnn_ilsvrc13
+	- model/bvlc_googlenet
 
+- Caffe用户上传了许多community models在[wiki pages](https://github.com/BVLC/caffe/wiki/Model-Zoo)，可下载使用。
 
+### Loss
 
+- loss function通过匹配参数设定（例如，当前网络权值）实现学习目标
 
+- 网络中的loss是由forward计算的，每层取输入（bottom）blobs，产生输出（top）blobs。部分层的输出可用在loss function上。
 
+- 对于多选一的分类问题，典型的loss function为`SoftmaxWithLoss`，如下：
+
+        layer{
+            name:"loss"
+            type:"SoftmaxWithLoss"
+            bottom:"pred"
+            bottom:"label"
+            top:"loss"
+            }
+            
+### Interface
+
+Caffe有通过三种接口进行使用：
+
+- command line: **cmdcaffeb**
+- python: **pycaffe**
+- matlab: **matcaffe**
+
+**Command Line: **
+
+1.** Training：** `train caffe`可从零开始训练模型，从保存的snapshots继续训练，以及fine-tune用于新数据与任务
+
+    - 所有训练都需要solver配置通过`-solver solver.prototxt`参数
+    - 继续训练需要`-snapshot model_iter_1000.solverstate`参数加载solver snapshot
+    - fine-tune需要`-weights model.caffemodel`参数完成模型初始化
+    
+2. **Testing：** `caffe test`运行模型的测试模块，用分数输出网络结果。网络架构定义来输出准确率或loss。per-batch输出后，grand average最后输出
+
+3.**Benchmarking（参照）：** `caffe time`通过时间和同步，作为层到层的模型执行参考。可用来检测系统星河和衡量模型时间
+
+4. **Diagnostics（诊断）：** `caffe device_query`在多GPU机器上运行时，输出参考以及检查序号
+
+### Data：Ins and Outs
+
+- 数据通过Blobs进入caffe；Data Layers加载来自Blob的数据或者保存Blob数据为其他格式
+
+- mean-subtraction和feature-scaling通过data layer配置完成
+
+- 可通过加入新的数据层完成新的输入类型，Net的其余部分由layer目录的其他模块组成
+
+- data layer定义：
+
+        layer{
+            name:"mnist"
+            type:"Data"
+            top:"data"
+            top:"label"
+            data_param{
+            source:"examples/mnist/mnist_train_lmdb"
+            backend:LMDB
+            batch_size:64}
+            transform_param{
+            scale:0.0039}
+            }
+            
+    - Tops和Bottoms
+    
+          data layer使top blobs成为输出数据；由于没有输入，则没有botoom blobs
+          
+    - Data和Label
+            
+        data layer至少有一个top叫data，一个次top叫label；二者都生成blobs，但是没有内在联系；（data，label）是为了分类模型的简便性
+        
+    - Transformations
+    
+        通过转换信息，将数据预处理参数化
+        
+    - Prefetching
+    
+         当Net计算当前batch时，data layer于后台操作，取下一个batch
+        
 
 	
 	

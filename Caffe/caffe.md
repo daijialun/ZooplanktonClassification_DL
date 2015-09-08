@@ -489,7 +489,7 @@ caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, bl
 	
 - 实际的weight更新是由slover实现的，再应用到net参数中
 
-- solver中weight的快照以及其state，分别由`Solver::Snapshot()`与`Solver::SnapshotSolverState()`实现。weight的快照允许训练从某一点继续，由`Solver::Restore()`实现
+- solver中weight的快照以及其state，分别由`Solver::Snapshot()`与`Solver::qSnapshotSolverState()`实现。weight的快照允许训练从某一点继续，由`Solver::Restore()`实现
 
 - weights保存没有拓展名，而solver state用solverstate拓展名保存。二者都有`_iter_N`后缀作为迭代次数快照
 
@@ -594,6 +594,8 @@ Caffe有通过三种接口进行使用：
     - Prefetching
     
          当Net计算当前batch时，data layer于后台操作，取下一个batch
+         
+     - Multiple inputs
         
 
 	

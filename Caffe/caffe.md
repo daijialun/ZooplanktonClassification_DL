@@ -518,6 +518,8 @@ caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, bl
 
 - Caffe用户上传了许多community models在[wiki pages](https://github.com/BVLC/caffe/wiki/Model-Zoo)，可下载使用。
 
+- **model可在github上的caffe/models/<model_name>页面中找到，并从readme.md提供的地址下载。**例如，[bvlc_alexnet.caffemodel](https://github.com/BVLC/caffe/tree/master/models/bvlc_alexnet)
+
 ### Loss
 
 - loss function通过匹配参数设定（例如，当前网络权值）实现学习目标
@@ -539,11 +541,12 @@ caffe的核心代码都在src/caffe下，主要有以下部分：net, layers, bl
 Caffe有通过三种接口进行使用：
 
 - command line: **cmdcaffeb**
+
 - python: **pycaffe**
+
 - matlab: **matcaffe**
 
-
-** Command Line:  **
+** Command Line: **
 
 1. ** Training：** `train caffe`可从零开始训练模型，从保存的snapshots继续训练，以及fine-tune用于新数据与任务
 

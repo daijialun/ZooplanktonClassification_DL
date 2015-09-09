@@ -542,7 +542,8 @@ Caffe有通过三种接口进行使用：
 - python: **pycaffe**
 - matlab: **matcaffe**
 
-**Command Line: **
+
+** Command Line:  **
 
 1. ** Training：** `train caffe`可从零开始训练模型，从保存的snapshots继续训练，以及fine-tune用于新数据与任务
 
@@ -611,28 +612,76 @@ Caffe有通过三种接口进行使用：
         模型网络所求得解的值
         
     - train_val.prototxt
+    
+        网络结构以及各层详细配置
+        
     - deploy.prototxt
-    - quick_solver.prototxt
-
+    
+        部署网络配置（与train_val.prototxt什么区别？？）
+        
 - **example/cifar10: **
 
     - cifar10_quick.prototxt
+    
+        网络结构以及各层详细配置
+        
     - cifar10_quick_solver.prototxt
+    
+        网络模型所求得的解
+        
     - cifar10_quick_solver_lr1.prototxt
+    
+        网络模型所求得的解（其基础learning rate不同，为0.0001）
+        
+    - get_cifar10.sh
+    
+        下载cifar10数据集
+            
     - create_cifar10.sh
+    
+         创建cifar10，即转换cifar10为lmdb格式数据
+         
     - train_quick.sh
+    
+            开始训练模型
+            
+    - cifar10_train_lmdb
+    
+            存放cifar10的lmdb数据
+            
     - mean.binaryproto
+    
+        图像的均值信息
     
 - **data/ilsvrc12: **
 
     - det_synset_words.txt
+    
+        定义序号对应的同义词
+        
     - synsets.txt
+    
+          列出序号
+              
     - synset_words.txt
+    
+        定义序号对应的同义词
+        
     - imagenet_mean.binaryproto
+    
+        image_net图像的均值信息
+        
     - train.txt
+    
+        训练图像对应的类别标号
+        
     - test.txt
+        
+        测试图像对应的类别标号
+        
     - val.txt
 
+        验证图像对应的类别标号
         
 
 	

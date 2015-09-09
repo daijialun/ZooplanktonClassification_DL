@@ -544,7 +544,7 @@ Caffe有通过三种接口进行使用：
 
 **Command Line: **
 
-1.** Training：** `train caffe`可从零开始训练模型，从保存的snapshots继续训练，以及fine-tune用于新数据与任务
+1. ** Training：** `train caffe`可从零开始训练模型，从保存的snapshots继续训练，以及fine-tune用于新数据与任务
 
     - 所有训练都需要solver配置通过`-solver solver.prototxt`参数
     - 继续训练需要`-snapshot model_iter_1000.solverstate`参数加载solver snapshot
@@ -552,7 +552,7 @@ Caffe有通过三种接口进行使用：
     
 2. **Testing：** `caffe test`运行模型的测试模块，用分数输出网络结果。网络架构定义来输出准确率或loss。per-batch输出后，grand average最后输出
 
-3.**Benchmarking（参照）：** `caffe time`通过时间和同步，作为层到层的模型执行参考。可用来检测系统星河和衡量模型时间
+3. **Benchmarking（参照）：** `caffe time`通过时间和同步，作为层到层的模型执行参考。可用来检测系统星河和衡量模型时间
 
 4. **Diagnostics（诊断）：** `caffe device_query`在多GPU机器上运行时，输出参考以及检查序号
 
@@ -596,6 +596,43 @@ Caffe有通过三种接口进行使用：
          当Net计算当前batch时，data layer于后台操作，取下一个batch
          
      - Multiple inputs
+     
+
+### Caffe文件格式
+
+- **model/bvlc_alexnet: **
+    
+    - bvlc_alexnet.caffemodel
+    
+        训练好的alexnet的caffe模型
+      
+    - solver.prototxt
+    
+        模型网络所求得解的值
+        
+    - train_val.prototxt
+    - deploy.prototxt
+    - quick_solver.prototxt
+
+- **example/cifar10: **
+
+    - cifar10_quick.prototxt
+    - cifar10_quick_solver.prototxt
+    - cifar10_quick_solver_lr1.prototxt
+    - create_cifar10.sh
+    - train_quick.sh
+    - mean.binaryproto
+    
+- **data/ilsvrc12: **
+
+    - det_synset_words.txt
+    - synsets.txt
+    - synset_words.txt
+    - imagenet_mean.binaryproto
+    - train.txt
+    - test.txt
+    - val.txt
+
         
 
 	

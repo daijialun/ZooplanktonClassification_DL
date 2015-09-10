@@ -1,7 +1,10 @@
 #!/bin/sh
 
-DATA_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/data/train
-LABEL_DIR=/home/wubin/Workspace/project/zooplankton/CaffeTrian/01_prepare/label/train
+#DATA_DIR and LABEL_DIR MAYBE THE SAME DIRECTORY
+DATA_DIR=<dataset root directory>/train
+LABEL_DIR=<dataset root directory>/label
+
+#这里所记录的路径为相对路径，必要时使用绝对路径
 label=0
 for i in `ls $DATA_DIR`; do
 	echo $i >> $LABEL_DIR/synsets.txt;

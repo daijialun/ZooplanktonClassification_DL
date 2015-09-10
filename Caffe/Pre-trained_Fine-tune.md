@@ -100,6 +100,71 @@
    
             - weights model.caffemodel
             
-### Zooplankton的fine-tune实现
+## Zooplankton的fine-tune实现
 
+Zooplankton的fine-tune实现，参照了**example/cifar10**，**models/alexnet**，**models/caffenet**与**models/finetune_flickr_style**的代码、配置以及用法
 
+### 准备数据集
+
+数据集主要参照**cifar10**，**finetune_flickr_style**与**alexnet**，以及通过DIGITS中`Datasets`所准备的**Zooplankton**数据集，再总结得出我们目前的准备zooplankton dataset的方法。
+
+- **cifar10：**
+
+- **finetune_flickr_style:**
+
+- **alexnet:**
+
+- **Zooplankton:**
+
+- **zooplankton:**
+
+    - 将数据集输入Caffe，需要将数据集转换为leveldb（或lmdb）格式，或者直接调用其图片与文档。根据实际情况选择下列一种方法：
+
+    -   将数据集转换为leveldb（或lmdb）格式
+    creat_cifar10.sh
+ 
+    - 存储为图片格式，调用train_val.txt
+
+### 下载mean.binaryproto
+
+mean.binaryproto是通过mean subtraction得到的dataset的均值图像（mean image），参照**cifar10**，**finetune_flickr_style**，**alexnet**与**Zooplankton**。
+
+- **cifar10：**
+
+- **finetune_flickr_style:**
+
+- **alexnet:**
+
+- **Zooplankton:**
+
+- **zooplankton:**
+
+    - 目前可以通过使用已有的ilsvrc12的`imagnet_mean.binaryproto`或者使用由数据库计算得出的`mean.binaryproto`
+
+### 配置solver.prototxt
+
+不同方法与例子，训练过与未训练的solver对应的内容不同，这里主要分析**cifar10**，**finetune_flickr_style**，**alexnet**与**Zooplankton**
+
+- **cifar10：**
+
+- **finetune_flickr_style:**
+
+- **alexnet:**
+
+- **Zooplankton:**
+
+- **zooplankton:**
+
+### 配置train_val.txt
+
+根据网络具体形式，以及数据集格式，来调整train_val.txt，实现训练目的
+
+- **cifar10：**
+
+- **finetune_flickr_style:**
+
+- **alexnet:**
+
+- **Zooplankton:**
+
+- **zooplankton:**

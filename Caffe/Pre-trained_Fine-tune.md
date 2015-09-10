@@ -85,3 +85,21 @@
             
             
          -gpu 0 表示使用CPU模式；-gpu all表示使用全部GPU
+         
+- `caffe train`可以从零开始训练模型，也可以从保存的snapshots继续训练
+
+    - 所有训练都需要solver配置，加入-solver参数
+    
+            - solver solver.prototxt
+            
+    - 从断点继续训练需要solverstate文件，加入-snapshot参数，不需要-weights参数
+    
+            - snapshot model_iter_N.solverstate
+            
+   - 使用fine-tune需要caffemodel模型文件，加入-weights参数
+   
+            - weights model.caffemodel
+            
+### Zooplankton的fine-tune实现
+
+

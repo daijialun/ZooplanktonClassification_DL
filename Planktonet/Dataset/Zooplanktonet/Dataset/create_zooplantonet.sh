@@ -1,19 +1,59 @@
 #!/usr/bin/env sh
-# This script converts the cifar data into leveldb format.
+# Create the zooplankton lmdb inputs
+# N.B. set the path to the zooplankton train + val data dirs
 
-EXAMPLE=examples/zooplanktonet
+EXAMPLE=examples/imagenet
 DATA=data/zooplankton
-DBTYPE=lmdb
+TOOLS=build/tools
 
-echo "Creating $DBTYPE..."
+TRAIN_DATA_ROOT=/path/to/caffe-master/data/zooplankton/train/
+VAL_DATA_ROOT=/path/to/caffe-master/data/zooplankton/val/
 
-rm -rf $EXAMPLE/zooplankton_train_$DBTYPE $EXAMPLE/zooplankton_test_$DBTYPE
+# Set RESIZE=true to resize the images to 256x256. Leave as false if images have
+# already been resized using another tool.
+# Grayscale is on
+GRAY=true
+RESIZE=true
+if $RESIZE; then
+  RESIZE_HEIGHT=256
+  RESIZE_WIDTH=256
+else
+  RESIZE_HEIGHT=0
+  RESIZE_WIDTH=0
+fi
 
-./build/examples/cifar10/convert_cifar_data.bin $DATA $EXAMPLE $DBTYPE
+if [ ! -d "$TRAIN_DATA_ROOT" ]; then
+  echo "Error: TRAIN_DATA_ROOT is not a path to a directory: $TRAIN_DATA_ROOT"
+  echo "Set the TRAIN_DATA_ROOT variable in create_zooplanktonet.sh to the path" \
+       "where the ZooplanktoNet training data is stored."
+  exit 1
+fi
 
-echo "Computing image mean..."
+if [ ! -d "$VAL_DATA_ROOT" ]; then
+  echo "Error: VAL_DATA_ROOT is not a path to a directory: $VAL_DATA_ROOT"
+  echo "Set the VAL_DATA_ROOT variable in create_zoolanktonet.sh to the path" \
+       "where the ZooplanktoNet validation data is stored."
+  exit 1
+fi
 
-./build/tools/compute_image_mean -backend=$DBTYPE \
-  $EXAMPLE/cifar10_train_$DBTYPE $EXAMPLE/mean.binaryproto
+echo "Creating train lmdb..."
+
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle \
+    $TRAIN_DATA_ROOT \
+    $DATA/train/train.txt \
+    $EXAMPLE/zooplanktonet_train_lmdb
+
+echo "Creating val lmdb..."
+
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle \
+    $VAL_DATA_ROOT \
+    $DATA/val/val.txt \
+    $EXAMPLE/zooplanktonet_val_lmdb
 
 echo "Done."

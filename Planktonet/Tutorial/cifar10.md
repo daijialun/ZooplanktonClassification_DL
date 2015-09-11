@@ -19,3 +19,10 @@
         ./examples/cifar10/train_quick.sh
         
 5. 在`cifar*solver.prototxt`文件中，保证`solver_mode: GPU`，即使用GPU训练
+
+
+## 文件说明
+
+- cifar10_quick_solver.prototxt 网络训练的基础参数设置
+
+- cifar10_quick_train_test.prototxt 网络具体结构

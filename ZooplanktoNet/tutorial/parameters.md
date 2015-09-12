@@ -347,4 +347,4 @@ caffenet具体结构可参考[AlexNet之结构篇](http://blog.sina.com.cn/s/blo
     
     }
     
-    输入数据的shap分别被定义为: batch_size, nchannel，height和width
+    输入数据的shap分别被定义为: batch_size， nchannel，height和width

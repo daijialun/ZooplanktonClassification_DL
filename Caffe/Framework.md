@@ -4,6 +4,46 @@ Caffe结构分析参考[Tour](http://caffe.berkeleyvision.org/tutorial/)
 
 ## Blobs, Layers和Nets
 
+Caffe结构主要分为三个部分：
+
+    - blob是存储，关联与操作Caffe信息的
+    - layer是模型和计算的基础
+    - net连接各层
+    
+ **Blob: **
+
+- blob是caffe中处理和传输的实际数据的载体，且提供了CPU和GPU同步的能力
+
+- 隐藏了CPU和GPU中计算的细节，只有有需要的时候，才为设备分配内存
+
+- 传统的图像批处理维度为 :
+    - number N
+    - channel K
+    - height H
+    - width W
+    
+    数据批处理的数量为number N，批处理对处理和传输可达到更好的效果。在ImageNet中，batch size就设置为256；channel K为特征的维度，例如RGB图像，K=3
+
+- blob参数随layer的类型和配置而改变
+    - 在卷积层中，96个11x11的3通道输入卷积，blob为96x3x11x11
+    - 在全连接层，有1024个输入，1000个输入，blob为1000x1024
+     
+**Layer: **
+
+- layer将*bottom*作为输入，*top*作为输出
+
+- layer定义了三个关键计算
+    - setup：在模型初始化时，初始化layer与其连接
+    - forward：用bottom输入计算输出到top
+    - backward：用top计算梯度传输到bottom
+    
+**Net: **
+
+- net是连接的各层组成的DAG（无回路有向图）。起始于数据层，终止于loss层。
+
+- 在初始化过程中，会验证整个网络结构的正确性等
+
+
 ## Forward和Backward
 
 - forward主要是根据输入，通过推断，计算输出。Caffe将各层的计算组合实现模型功能。forward pass是自底向上的

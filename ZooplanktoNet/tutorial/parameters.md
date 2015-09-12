@@ -53,7 +53,9 @@
 
 ## models/bvlc_reference_caffenet/train_val.prototxt
 
-caffenet具体结构可参考其![ ](http://s1.sinaimg.cn/large/004j58Jbzy6NvjDo5UI60&690)
+caffenet具体结构可参考其下图：
+
+![ ](http://s1.sinaimg.cn/large/004j58Jbzy6NvjDo5UI60&690)
 
 ### layer: data
 

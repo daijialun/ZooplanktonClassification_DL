@@ -330,3 +330,21 @@ caffenet具体结构可参考[AlexNet之结构篇](http://blog.sina.com.cn/s/blo
     top: "loss"
     
     输入输入数据为fc8（即预测结果）与label，输出为loss
+    
+### deploy.prototxt
+
+以下内容可参照[利用GPU和Caffe训练神经网络](http://www.csdn.net/article/2015-06-12/2824936)
+
+- input_shape{
+
+    dim: 10
+    
+    dim: 3
+    
+    dim: 227
+    
+    dim: 227
+    
+    }
+    
+    输入数据的shap分别被定义为: batch_size, nchannel，height和width

@@ -42,6 +42,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
+    --gray=$GRAY
     $TRAIN_DATA_ROOT \
     $DATA/train/train.txt \
     $EXAMPLE/zooplanktonet_train_lmdb
@@ -52,6 +53,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
+    --gray=$GRAY
     $VAL_DATA_ROOT \
     $DATA/val/val.txt \
     $EXAMPLE/zooplanktonet_val_lmdb

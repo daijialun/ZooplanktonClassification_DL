@@ -35,6 +35,24 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 - 注意修改各参数变量名，如"$DATA/imagenet_mean.binaryproto"修改为"$DATA/zooplanktonet_mean.binaryproto"
 
+## Train
+
+### train_zooplanktonet.sh
+
+- 脚本根据"caffe_root/examples/imagenet/train_caffenet.sh"修改
+
+- "--solver=models/cvbiouc_zooplanktonet/solver.prototxt"可修改为"-solver models/cvbiouc_zooplanktonet/solver.prototxt"
+
+- 可添加"-gpu all"，表示使用全部GPU运算
+
+- 注意修改solver.prototxt路径
+
+## Finetune
+
+### fine_zooplanktonet.sh
+
+- 脚本根据
+
 
 
 

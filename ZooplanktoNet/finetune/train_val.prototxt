@@ -1,7 +1,7 @@
-name: "FlickrStyleCaffeNet"
+name: "ZooplanktonCaffeNet"
 layer {
   name: "data"
-  type: "ImageData"
+  type: "Data"
   top: "data"
   top: "label"
   include {
@@ -10,18 +10,17 @@ layer {
   transform_param {
     mirror: true
     crop_size: 227
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
+    mean_file: "data/zooplankton/zooplanktonet_mean.binaryproto"
   }
-  image_data_param {
-    source: "data/flickr_style/train.txt"
+  data_param {
+    source: "examples/zooplanktonet/zooplanktonet_train_lmdb"
     batch_size: 50
-    new_height: 256
-    new_width: 256
+    backend: LMDB
   }
 }
 layer {
   name: "data"
-  type: "ImageData"
+  type: "Data"
   top: "data"
   top: "label"
   include {
@@ -30,13 +29,12 @@ layer {
   transform_param {
     mirror: false
     crop_size: 227
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
+    mean_file: "data/zooplankton/zooplanktonet_mean.binaryproto"
   }
-  image_data_param {
-    source: "data/flickr_style/test.txt"
-    batch_size: 50
-    new_height: 256
-    new_width: 256
+  data_param {
+    source: "examples/zooplanktonet/zooplanktonet_val_lmdb"
+    batch_size: 50 
+    backend: LMDB
   }
 }
 layer {
@@ -344,10 +342,10 @@ layer {
   }
 }
 layer {
-  name: "fc8_flickr"
+  name: "fc8_zooplanktonet"
   type: "InnerProduct"
   bottom: "fc7"
-  top: "fc8_flickr"
+  top: "fc8_zooplankton"
   # lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
   param {
     lr_mult: 10
@@ -372,14 +370,14 @@ layer {
 layer {
   name: "loss"
   type: "SoftmaxWithLoss"
-  bottom: "fc8_flickr"
+  bottom: "fc8_zooplankton"
   bottom: "label"
   top: "loss"
 }
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "fc8_flickr"
+  bottom: "fc8_zooplankton"
   bottom: "label"
   top: "accuracy"
   include {

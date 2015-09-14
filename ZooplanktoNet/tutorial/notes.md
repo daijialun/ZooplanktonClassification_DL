@@ -35,6 +35,29 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 - 注意修改各参数变量名，如"$DATA/imagenet_mean.binaryproto"修改为"$DATA/zooplanktonet_mean.binaryproto"
 
+## Model
+
+### solver.prototxt
+
+- 文件根据"caffe_root/models/bvlc_reference_caffenet/solver.prototxt"修改
+
+- 注意修改**net**与**snapshot_prefix**路径设置 
+
+### train_val.prototxt
+
+- 文件根据"caffe_root/models/bvlc_reference_caffenet/bvlc_caffenet.model"修改
+
+- 修改**name**为**name: ZooplanktoNet**
+
+- 将**tranform_param**参数中，修改**mean_file**路径 
+
+- 修改**data_param**中，**source**路径
+
+### deploy.prototxt
+
+- 结构部署文件，大部分内容与train_val.txt相同，修改其没有实际影响
+
+
 ## Train
 
 ### train_zooplanktonet.sh
@@ -51,7 +74,27 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 ### fine_zooplanktonet.sh
 
-- 脚本根据
+- -solver表示使用的solver.prototxt文件位置；-weights表示finetune所使用的pre-trained模型位置
+
+### solver.prototxt
+
+- 文件根据"caffe_root/models/finetune_flickr_style/solver.prototxt"修改
+
+- 注意修改**net**与**snapshot_prefix**路径设置
+
+### train_val.prototxt
+
+- 文件根据"caffe_root/models/finetune_flickr_style/train_val.prototxt"修改
+
+- 修改**name**为**name: ZooplanktonCaffeNet**
+
+- 将**tranform_param**参数中，修改**mean_file**路径
+
+- 将**layer**中的**"type:ImageData"**修改为**"type:Data"**，表示不使用图像数据，使用lmdb
+
+- 将**image_data_param**的参数设置，修改为**data_param**；其中修改**source**，删除**new_height**和**new_width**，增加**backend: LMDB**
+
+- 在最后几层，根据自己的实际情况进行修改。注意修改后几层的**name**，**bottom**与**top**
 
 
 

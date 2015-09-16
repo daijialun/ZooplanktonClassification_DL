@@ -27,7 +27,7 @@ ZooplanktoNet相关实验记录
             loss(val): 2.57342
             loss(train): 0.0854
 
-    accuracy(val)，loss(val)与loss(train)曲线波动变化基本正常
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化基本正常**
     
 - 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张。
 
@@ -46,7 +46,7 @@ ZooplanktoNet相关实验记录
             loss(val): 2.91502
             loss(train): 2.24022
            
-    accuracy(val)与loss(val)基本呈直线，基本没有变化；loss(train)在范围内震荡变化
+    **accuracy(val)与loss(val)基本呈直线，基本没有变化；loss(train)在范围内震荡变化**
            
 - 3) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张。
 
@@ -64,7 +64,7 @@ ZooplanktoNet相关实验记录
             loss(val): 2.91502
             loss(train): 2.24022
            
-    accuracy(val)，loss(val)与loss(train)都图形呈直线状，基本不改变
+    **accuracy(val)，loss(val)与loss(train)都图形呈直线状，基本不改变**
            
 - 4) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张。
 
@@ -82,9 +82,9 @@ ZooplanktoNet相关实验记录
             loss(val): 2.49416
             loss(train): 0.21369
            
-    accuracy(val)，loss(val)与loss(train)曲线波动正常
+    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
     
- - 5) 根据以上各实验结果，可以观察到：1) 与 4) 的共同点为train都为7098images，val都为25%，而test不同，二者的accuracy与loss都几乎相同；2) 与 3)的共同点为train都为9460images，val为测试的1300images，二者的accuracy与loss都几乎相同；当val为25%时，其正确率高于，val为test的1300images，且高出很多。
+- 5) 根据以上各实验结果，可以观察到：1) 与 4) 的共同点为train都为7098images，val都为25%，而test不同，二者的accuracy与loss都几乎相同；2) 与 3)的共同点为train都为9460images，val为测试的1300images，二者的accuracy与loss都几乎相同；当val为25%时，其正确率高于，val为test的1300images，且高出很多。
  
  	因此可以得出：在LeNet训练中，val应该选择25%，有1300images的test，正确率会比无test的高大约3%。所以用DIGITS训练时，使用**train9460+val25%+test1300**比较合适。
            
@@ -132,7 +132,7 @@ ZooplanktoNet相关实验记录
            loss(val): 2.67403
            loss(train): 0.0199318
 
-     accuracy(val)，loss(val)与loss(train)曲线波动正常
+     **accuracy(val)，loss(val)与loss(train)曲线波动正常**
     
 - 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300*，表示原始数据集为Zooplankton，通道数为1，即灰度图像，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张。
 
@@ -151,7 +151,7 @@ ZooplanktoNet相关实验记录
            loss(val): 3.97581
            loss(train): 0.02518
       
-      accuracy(val)，loss(val)与loss(train)曲线波动正常  
+    **accuracy(val)，loss(val)与loss(train)曲线波动正常** 
          
 - 3) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300*，表示原始数据集为Zooplankton，通道数为1，即为灰度图像，图像未处理(origin)，train输入为9460张，val为test的1300张。
 
@@ -169,7 +169,7 @@ ZooplanktoNet相关实验记录
            loss(val): 4.56747
            loss(train): 0.02716
            
-    accuracy(val)，loss(val)与loss(train)曲线波动正常
+    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
                       
 - 4) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25*，表示原始数据集为Zooplankton，通道数为1，即灰度图像，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张。
 
@@ -187,9 +187,9 @@ ZooplanktoNet相关实验记录
            loss(val): 2.80499
            loss(train): 0.1193
            
-  accuracy(val)，loss(val)与loss(train)曲线波动正常
+  **accuracy(val)，loss(val)与loss(train)曲线波动正常**
 
- - 5) 根据以上各实验结果，可以观察到：1) 与 4) 的共同点为train都为7098images，val都为25%，而test不同，二者的accuracy与loss都几乎相同；2) 与 3)的共同点为train都为9460images，val为测试的1300images，二者的accuracy与loss都几乎相同；当val为25%时，其正确率高于，val为test的1300images，且高出很多。
+- 5) 根据以上各实验结果，可以观察到：1) 与 4) 的共同点为train都为7098images，val都为25%，而test不同，二者的accuracy与loss都几乎相同；2) 与 3)的共同点为train都为9460images，val为测试的1300images，二者的accuracy与loss都几乎相同；当val为25%时，其正确率高于，val为test的1300images，且高出很多。
  
  	因此可以得出：在LeNet训练中，val应该选择25%，有1300images的test，正确率会比无test的高大约3%。所以用DIGITS训练时，使用**train9460+val25%+test1300**比较合适。
  	

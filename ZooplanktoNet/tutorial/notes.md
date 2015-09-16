@@ -98,6 +98,43 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 - 在最后几层，根据自己的实际情况进行修改。注意修改后几层的**name**，**bottom**与**top**
 
 
+## Other
+
+- 训练数据不够，使用finetune
+
+- 如果训练集收敛不好，可尝试增大stepsize
+
+- 初始learning rate, lr=0.01
+
+- 调试步骤可尝试：逐步调试batchsize, base_lr, stepsize, 以及每一层lr，主要依靠调试经验
+
+- 看caffe代码经验：先搞懂原理，再看代码；清楚数据流，架构模块拆分并不困难
+
+- deplpy.prototxt主要是matlab使用的格式
+
+- --shuffling，表示随机化处理
+
+- NAN表示Not a Number，表示一些特殊数值（无穷与非数值），即可能已经无解了
+
+- weight decay是一个正则项，参考[blog](http://blog.csdn.net/zouxy09/article/details/24971995)
+
+- 可用graphviz画网络结构图
+
+- split_layer的作用是将一个blob复制两份或多份，保持各自的data独立和diff的共享。例如，一个blob作为layer的bottom的时候，就需要通过split将这个blob复制成两份，接收两个回传的梯度并相加 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

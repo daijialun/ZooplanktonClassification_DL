@@ -10,7 +10,25 @@ ZooplanktoNet相关实验记录
 
 ##### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-- 1) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val占据25%，test输入为1300张，image size为256x256。
+- 1) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为256x256。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: COLOR
+            Create DB(train): 7098 images
+            Create DB(val): 2363 images
+            Encoding: png 
+        
+    **Result:**
+
+            accuracy(val): 58.9583%
+            loss(val): 2.49416
+            loss(train): 0.21369
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
+
+- 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val占据25%，test输入为1300张，image size为256x256。
 
     **dataset:**
  
@@ -29,25 +47,7 @@ ZooplanktoNet相关实验记录
 
     **accuracy(val)，loss(val)与loss(train)曲线波动变化基本正常**
     
-- 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张，image size为256x256。
-
-    **dataset:**
- 
-            Image Size: 256x256
-            Image Type: COLOR
-            Create DB(train): 9460 images
-            Create DB(val): 1300 images
-            Create DB(test): 1300 images
-            Encoding: png 
-        
-    **Result:**
-
-	          accuracy(val): 7.6923%
-            loss(val): 2.91502
-            loss(train): 2.24022
-           
-    **accuracy(val)与loss(val)基本呈直线，基本没有变化；loss(train)在范围内震荡变化**
-           
+          
 - 3) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。
 
     **dataset:**
@@ -66,25 +66,28 @@ ZooplanktoNet相关实验记录
            
     **accuracy(val)，loss(val)与loss(train)都图形呈直线状，基本不改变**
            
-- 4) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为256x256。
+
+- 4) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张，image size为256x256。
 
     **dataset:**
  
             Image Size: 256x256
             Image Type: COLOR
-            Create DB(train): 7098 images
-            Create DB(val): 2363 images
+            Create DB(train): 9460 images
+            Create DB(val): 1300 images
+            Create DB(test): 1300 images
             Encoding: png 
         
     **Result:**
 
-            accuracy(val): 58.9583%
-            loss(val): 2.49416
-            loss(train): 0.21369
+	          accuracy(val): 7.6923%
+            loss(val): 2.91502
+            loss(train): 2.24022
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
+    **accuracy(val)与loss(val)基本呈直线，基本没有变化；loss(train)在范围内震荡变化**
+ 
    
-- 5)  数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
+- 5) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
 
     **dataset:**
  

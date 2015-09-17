@@ -84,7 +84,7 @@ ZooplanktoNet相关实验记录
            
     **accuracy(val)，loss(val)与loss(train)曲线波动正常**
    
--5)  数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
+- 5)  数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
 
     **dataset:**
  
@@ -102,7 +102,7 @@ ZooplanktoNet相关实验记录
            
     **accuracy(val)，loss(val)与loss(train)曲线波动正常**
     
--6)  数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
+- 6)  数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_28x28*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张，image size为28x28。
 
      **dataset:**
  
@@ -149,11 +149,11 @@ ZooplanktoNet相关实验记录
         
     **Result:**
 
-            accuracy(val): 56.625%
-            loss(val): 2.57342
-            loss(train): 0.0854
+            accuracy(val): 80.4583%
+            loss(val): 0.58033
+            loss(train): 0.18893(0.466331)
 
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化基本正常**
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
 
 - 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val占据25%，test输入为1300张，image size为256x256。
 
@@ -168,11 +168,11 @@ ZooplanktoNet相关实验记录
         
     **Result:**
 
-            accuracy(val): 56.625%
-            loss(val): 2.57342
-            loss(train): 0.0854
+            accuracy(val): 79.4583%
+            loss(val): 0.57679
+            loss(train): 0.326187
 
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化基本正常**
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
         
 - 3) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。
 
@@ -186,11 +186,11 @@ ZooplanktoNet相关实验记录
         
     **Result:**
 
-            accuracy(val): 7.6923%
-            loss(val): 2.91502
-            loss(train): 2.24022
+            accuracy(val): 79.2308%
+            loss(val): 0.661074
+            loss(train): 0.244173
            
-    **accuracy(val)，loss(val)与loss(train)都图形呈直线状，基本不改变**        
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**        
         
 - 4) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张，image size为256x256。
 
@@ -205,11 +205,11 @@ ZooplanktoNet相关实验记录
         
     **Result:**
 
-	          accuracy(val): 7.6923%
-            loss(val): 2.91502
-            loss(train): 2.24022
+	          accuracy(val): 78.4615%
+            loss(val): 0.696236
+            loss(train): 0.286798
            
-    **accuracy(val)与loss(val)基本呈直线，基本没有变化；loss(train)在范围内震荡变化**
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
     
            
 ##### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
@@ -223,6 +223,13 @@ ZooplanktoNet相关实验记录
 ##### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 ##### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
+
+
+
+
+
+
+
 
 ### 单通道图像
 
@@ -303,7 +310,7 @@ ZooplanktoNet相关实验记录
            loss(val): 2.80499
            loss(train): 0.1193
            
-  **accuracy(val)，loss(val)与loss(train)曲线波动正常**
+    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
 
 - 5) 根据以上各实验结果，可以观察到：1) 与 4) 的共同点为train都为7098images，val都为25%，而test不同，二者的accuracy与loss都几乎相同；2) 与 3)的共同点为train都为9460images，val为测试的1300images，二者的accuracy与loss都几乎相同；当val为25%时，其正确率高于，val为test的1300images，且高出很多。
  
@@ -315,9 +322,90 @@ ZooplanktoNet相关实验记录
 
 ##### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
+
+
 #### AlexNet
 
-##### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）+ 图像转换为3通道lmdb 
+##### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）+ 图像转换为1通道lmdb 
+
+
+- - 1) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val占据25%，image size为256x256。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 7098 images
+            Create DB(val): 2362 images
+            Encoding: png 
+        
+    **Result:**
+
+            accuracy(val): 79.2917%
+            loss(val): 0.610655
+            loss(train): 0.498804
+
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
+
+- 2) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val占据25%，test输入为1300张，image size为256x256。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 7098 images
+            Create DB(val): 2362 images
+            Create DB(test): 1300 images
+            Encoding: png 
+        
+    **Result:**
+
+            accuracy(val): 81.75%
+            loss(val): 0.548539
+            loss(train): 0.313309
+
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
+        
+- 3) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 9460 images
+            Create DB(val): 1300 images
+            Encoding: png 
+        
+    **Result:**
+
+            accuracy(val): 77.4615%
+            loss(val): 0.706065
+            loss(train): 0.300
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**        
+        
+- 4) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张，image size为256x256。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 9460 images
+            Create DB(val): 1300 images
+            Create DB(test): 1300 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 78.6154%
+            loss(val): 0.669017
+            loss(train): 0.45559
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**
+    
+ 
+
+
 
 ##### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 

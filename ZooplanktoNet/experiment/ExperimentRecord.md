@@ -74,10 +74,6 @@ LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置
 
 因此，由以上可知，**在创建数据集时，不使用test，对结果基本没影响。**所以，应该使用**Train_9460，Val_1300/25%，无Test**较为合适。
 
-#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
-
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
-
 
 ### AlexNet（单通道）
 
@@ -137,6 +133,42 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
            
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
+- 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 8073 images
+            Create DB(val): 2687 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 81%
+            loss(val): 0.493931
+            loss(train): 0.279183
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
+    
+- 2）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_5_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为5%，537张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_5_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 10223 images
+            Create DB(val): 537 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 80.8519%
+            loss(val): 0.586968
+            loss(train): 0.474527
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
+
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
 ### CaffeNet（单通道）
@@ -176,6 +208,7 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 

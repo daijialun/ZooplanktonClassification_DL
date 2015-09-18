@@ -12,91 +12,56 @@ ZooplanktoNet相关实验记录
 在**DIGITS**中：
 创建数据集时，也有train, val与test三个数据选项。但是，DIGITS在训练过程中，accuracy与loss都是使用val进行判断，因此必须判断test数据选项在DIGITS训练过程中的作用。应该了解test数据的使用：(1) 作为val，即*train_9460 images, val_1300 images*与*train_9460 images, val_25%, 无test*； (2) 作为test，即*train_9460 images, test_1300 images*
 
-对于zooplankton，只有train与test。而本质上，train与test都是相同类别的图像，可以理解为，从整体图像中分出train与test图像，二者性质应没有差别。所以，我认为**正常情况下，train为9460 images，val为1300 images，test不需要。**但是具体情况，还是通过实验来验证。
+对于zooplankton，只有train与test。而本质上，train与test都是相同类别的图像，可以理解为，从整体图像中分出train与test图像，二者性质应没有差别。经过实验证明，如果将是*Train_9460_Val_0_Test_25%*或*Train_9460_Val_0_Test_1300*的情况，没有显示accuracy与loss(val)。
+
+所以，我认为**正常情况下，train为9460 images，val为1300 images，不需设置test**但是具体情况，还是通过实验来验证。
 
 ### LeNet（单通道）
 
-LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置为28x28，通道为grayscale。所以，实验可分为4组：(1)*train_9460，val_25%，无test，用test来测准确率*；(2)*train_9460，val_25%，test_1300*；(3)*train_9460，val_1300*；（4）*train_9460，test_1300*
+LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置为28x28，通道为grayscale。所以，实验可分为4组：(1) *train_9460，val_1300*；(2)*train_9460，val_1300，test_1300*
 
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-- 1) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25*，表示原始数据集为Zooplankton，通道数为1，即灰度图像，图像未处理(origin)，train输入为9460张，val为输入的25%，2362张。
+- 1) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300_28x28*，表示原始数据集为Zooplankton，通道数为1，即灰度图像，图像未处理(origin)，train输入为9460张，val为输入的1300张测试图像，图像size为28x28。
 
     **dataset:**
  
-            Image Size: 256x256
+            Image Size: 28x28
             Image Type: GRAYSCALE
-            Create DB(train): 7098 images
-            Create DB(val): 2363 images
+            Create DB(train): 9400 images
+            Create DB(val): 1300 images
             Encoding: png 
         
     **Result:**
 
-            accuracy(val): 58.9583%
-            loss(val): 2.80499
-            loss(train): 0.1193
+            accuracy(val): 63.4615%
+            loss(val): 1.49338
+            loss(train): 0.05301
            
     **accuracy(val)，loss(val)与loss(train)曲线波动正常**
      
-- 2) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25_Test_1300*，表示原始数据集为Zooplankton，通道数为1，即为灰度图像，图像未处理(origin)，train输入为9460张，val占据25%，test输入为1300张。
+- 2) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300_Test_1300_28x28*，表示原始数据集为Zooplankton，通道数为1，即为灰度图像，图像未处理(origin)，train输入为9460张，val输入为1300张测试图像，test输入为1300张测试图像。
 
     **dataset:**
  
-            Image Size: 256x256
+            Image Size: 28x28
             Image Type: GRAYSCALE
-            Create DB(train): 7098 images
-            Create DB(val): 2362 images
+            Create DB(train): 9460 images
+            Create DB(val): 1300 images
             Create DB(test): 1300 images
             Encoding: png 
         
     **Result:**
 
-            accuracy(val): 61.125%
-            loss(val): 2.67403
-            loss(train): 0.0199318
+            accuracy(val): 62.6923%
+            loss(val): 1.52084
+            loss(train): 0.0769752
 
      **accuracy(val)，loss(val)与loss(train)曲线波动正常**
-    
-- 3) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_1300_Test_1300*，表示原始数据集为Zooplankton，通道数为1，即灰度图像，图像未处理(origin)，train输入为9460张，val为test的1300张，test输入为1300张。
 
-    **dataset:**
- 
-            Image Size: 256x256
-            Image Type: GRAYSCAL
-            Create DB(train): 9460 images
-            Create DB(val): 1300 images
-            Create DB(test): 1300 images
-            Encoding: png 
-        
-    **Result:**
+- 3) 由1）和2）可知，当test图像作为Val时，Test有无并不产生影响，其accuracy几乎相等。因此，应该使用**Train_9460，Val_1300，无Test**较为合适。
 
-            accuracy(val): 48.4615%
-            loss(val): 3.97581
-            loss(train): 0.02518
-      
-    **accuracy(val)，loss(val)与loss(train)曲线波动正常** 
-         
-- 4) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300*，表示原始数据集为Zooplankton，通道数为1，即为灰度图像，图像未处理(origin)，train输入为9460张，val为test的1300张。
-
-    **dataset:**
- 
-            Image Size: 256x256
-            Image Type: GRAYSCALE
-            Create DB(train): 9460 images
-            Create DB(val): 1300 images
-            Encoding: png 
-        
-    **Result:**
-
-           accuracy(val): 47.9231%
-           loss(val): 4.56747
-           loss(train): 0.02716
-           
-    **accuracy(val)，loss(val)与loss(train)曲线波动正常**
-                      
-
-       
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
@@ -104,35 +69,9 @@ LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置
 
 ### AlexNet（单通道）
 
-#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）+ 图像转换为3通道lmdb 
-           
-#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
-
-### CaffeNet（单通道）
-
-#### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
-
-#### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
-
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
-
-### GoogleNet（单通道）
-
-#### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
-
-#### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
-
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
-
-
-#### AlexNet
-
-##### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）+ 图像转换为1通道lmdb 
-
-
-- - 1) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val占据25%，image size为256x256。
+- 1) 数据集为*Zooplankton_3Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val占据25%，image size为256x256。
 
     **dataset:**
  
@@ -208,21 +147,20 @@ LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置
     
  
 
-
-
+           
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
-### CaffeNet
+### CaffeNet（单通道）
 
-#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）+ 图像转换为3通道lmdb 
+#### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+#### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
-### GoogleNet
+### GoogleNet（单通道）
 
 #### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 

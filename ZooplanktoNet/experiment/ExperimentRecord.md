@@ -97,7 +97,7 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.659638
             loss(train): 0.371415
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常**        
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。**        
         
 - 2) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_25_256x256*。
 
@@ -133,7 +133,7 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
            
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
-- 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。
+- 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。再使用`build/tools/caffe test`检测模型accuracy，使用测试集为1300 images。
 
     **dataset:**
  
@@ -149,8 +149,13 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.493931
             loss(train): 0.279183
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为81.0371。** 
     
+   （未完成） **caffe test:**
+    
+            accuracy=0.8084
+            loss=0.580721
+                
 - 2）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_5_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为5%，537张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_5_256x256*。
 
     **dataset:**
@@ -167,7 +172,61 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.586968
             loss(train): 0.474527
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为83.0371。** 
+
+- 3）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_2_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为2%，215张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_2_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 10545 images
+            Create DB(val): 215 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 84.6667%
+            loss(val): 0.42986
+            loss(train): 0.3321
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为84.6667。** 
+
+- 4）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_1_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10670张图像，val为1%，106张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_1_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 10654 images
+            Create DB(val): 106 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 87%
+            loss(val): 0.401464
+            loss(train): 0.704323
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为87。** 
+
+- 5）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10670张图像，val为1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_1300_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 10670 images
+            Create DB(val): 1300 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 86.0769%
+            loss(val): 0.41532
+            loss(train): 0.353224
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为86.0769。** 
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 

@@ -122,6 +122,13 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 - split_layer的作用是将一个blob复制两份或多份，保持各自的data独立和diff的共享。例如，一个blob作为layer的bottom的时候，就需要通过split将这个blob复制成两份，接收两个回传的梯度并相加 
 
+- 小数据集上finetune model的overfitting问题：实践方法：finetune，加数据；理论工作，large margin deep neural network
+
+- cxxnet推荐使用
+
+- mean.prototxt对正确率有影响，可提高正确率
+
+
 
 
 

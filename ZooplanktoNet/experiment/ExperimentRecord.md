@@ -10,15 +10,15 @@ ZooplanktoNet相关实验记录
 在caffe的train_val.prototxt文件中，只有两个模块include{ phase:TRAIN }与include{ phase:TEST }。其中，在include{ phase:TRAIN }中，使用train_lmdb；而在include{ phase:TEST }中，使用val_lmdb。由此可知，正常情况下，是将train_lmdb作为训练，val_lmdb作为测试。
 
 在**DIGITS**中：
-创建数据集时，也有train, val与test三个数据选项。但是，DIGITS在训练过程中，accuracy与loss都是使用val进行判断，因此必须判断test数据选项在DIGITS训练过程中的作用。应该了解test数据的使用：(1) 作为val，即*train_9460 images, val_1300 images*与*train_9460 images, val_25%, 无test*； (2) 作为test，即*train_9460 images, test_1300 images*
+创建数据集时，也有train, val与test三个数据选项。但是，DIGITS在训练过程中，除了一个loss使用train判断，余下二者accuracy与loss都是使用val进行判断，因此必须判断test数据选项在DIGITS训练过程中的作用。通过设置三组实验，验证test的1300 images的作用：(1) 作为test，即*train_9460 images, 无val，test_1300 images*；(2) 作为val，即*train_9460 images, val_1300 images，无test*；(3) 作为val，即*train_9460 images, val_25%, 无test*； 
 
-**对于zooplankton**，只有train与test。而本质上，train与test都是相同类别的图像，可以理解为，从整体图像中分出train与test图像，二者性质应没有差别。经过实验证明，如果将是*Train_9460_Val_0_Test_25%*或*Train_9460_Val_0_Test_1300*的情况，没有显示accuracy与loss(val)。
+**对于zooplankton**，只有train与test。而本质上，train与test都是相同类别的图像，可以理解为，从整体图像中分出train与test图像，二者性质应没有差别。经过实验证明，如果输入数据是*Train_9460_Val_0_Test_25%*或*Train_9460_Val_0_Test_1300*的情况，DIGITS将不会显示accuracy与loss(val)。因此，在使用DIGITS时，val数据必须，而test数据待定。
 
-所以，我认为**正常情况下，train为9460 images，val为1300 images，不需设置test**但是具体情况，还是通过实验来验证。
+我认为**正常情况下，train为9460 images，val为1300 images，不需设置test**。但是具体情况，必须通过实验，**验证DIGITS创建数据时，test选项的作用**。
 
 ### LeNet（单通道）
 
-LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置为28x28，通道为grayscale。所以，实验可分为2组：(1) *train_9460，val_1300*；(2)*train_9460，val_1300，test_1300*。通过以下实验，可以**确认LeNet网络性能**，以及**创建数据时，是否需要test**。
+LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置为28x28，通道为grayscale。所以，实验可分为2组：(1) *train_9460，val_1300*；(2)*train_9460，val_1300，test_1300*。通过以下实验，可以**确认LeNet网络性能**，以及**DIGITS创建数据时，是否需要test选项**。
 
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
@@ -72,16 +72,18 @@ LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置
                 accuracy=0.6272
                 loss=1.51305
 
-因此，由以上可知，**在创建数据集时，不使用test，对结果基本没影响。**所以，应该使用**Train_9460，Val_1300/25%，无Test**较为合适。
+因此，由以上可知，**在创建数据集时，不使用test，对结果基本没影响。DIGITS创建数据时，val选项充当test作用。**所以，应该使用**Train_9460，Val_1300/25%，无Test**。
+
+而**Train_9460，Val_1300**充分使用训练集，且正确率高出1%左右，所以应该选择其训练。
 
 
 ### AlexNet（单通道）
 
-AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置为256x256，通道数为3，但是由于zooplankton是单通道图像，因此在这使用AlexNet，只使用grayscale通道。另外，实验可分为2组：（1）train_9460，val_1300；（2）train_9460，val_1300。通过以下实验，**确认AlexNet网络性能**，以及**创建数据时，Val设置为25%或1300 images**。
+AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置为256x256，通道数为3，但是由于zooplankton是单通道图像，因此在这使用AlexNet，只使用grayscale通道。另外，实验可分为2组：（1）train_9460，val_1300；（2）train_9460，val_25。通过以下实验，**确认AlexNet网络性能**，以及**创建数据时，Val设置为25%或1300 images，对正确率的影响**。
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-- 1) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_1300_256x256*。
+- 1) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_1300_256x256*。
 
     **dataset:**
  
@@ -99,7 +101,7 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
            
     **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。**        
         
-- 2) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为test的1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_25_256x256*。
+- 2) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，实际训练7098张图像；val为25%训练图像，2362张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_25_256x256*。
 
     **dataset:**
  
@@ -117,23 +119,23 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
            
     **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
     
- - 3) 由1）和2）可知，当test图像作为Val时，其accuracy几乎相等。但是通过`./build/tools/caffe test`来检测所训练模型的准确率，其中：
+ - 3) 由1）和2）可知，比较val选项为*1300 images*与*25%的train图像*时，其accuracy几乎相等。但是通过`./build/tools/caffe test`来检测所训练模型的准确率，其中：
  
     - 1)的网络模型*AlexNet_1Channel_Origin_Train_9460_Val_1300_256x256*的结果：
     
                 accuracy=0.787
                 loss=0.662758
                 
-       - 2)的网络模型*AlexNet_1Channel_Origin_Train_9460_Val_25_256x256*的结果：
+    - 2)的网络模型*AlexNet_1Channel_Origin_Train_9460_Val_25_256x256*的结果：
    
                 accuracy=0.7744
                 loss=0.765725
    
-    通过以上实验，可以得出，在创建数据是，应该使用**Train_9460，Val_1300，无Test**。
+    通过以上实验，可以得出，对两种val选项的设置，其正确率基本相同。但是推荐使用**Train_9460，Val_1300，无Test**。
            
-#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+#### 2. 训练图像9460+1300张（训练集+测试集） + 不同比例测试图像（测试集）
 
-- 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。再使用`build/tools/caffe test`检测模型accuracy，使用测试集为1300 images。
+- 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为10760张图像，实际训练图像8073张；val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。
 
     **dataset:**
  
@@ -149,14 +151,10 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.493931
             loss(train): 0.279183
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为81.0371。** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为81.0371%。** 
     
-   （未完成） **caffe test:**
-    
-            accuracy=0.8084
-            loss=0.580721
-                
-- 2）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_5_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为5%，537张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_5_256x256*。
+ 
+- 2）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_5_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为10760张图像，实际图像1022张图像；val为5%，537张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_5_256x256*。
 
     **dataset:**
  
@@ -172,9 +170,9 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.586968
             loss(train): 0.474527
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为83.0371。** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为83.0371%。** 
 
-- 3）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_2_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10760张图像，val为2%，215张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_2_256x256*。
+- 3）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_2_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为10760张图像；val为2%，215张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_2_256x256*。
 
     **dataset:**
  
@@ -190,9 +188,9 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.42986
             loss(train): 0.3321
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为84.6667。** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为84.6667%。** 
 
-- 4）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_1_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10670张图像，val为1%，106张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_1_256x256*。
+- 4）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_1_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为10670张图像；val为1%，106张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_1_256x256*。
 
     **dataset:**
  
@@ -208,7 +206,7 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.401464
             loss(train): 0.704323
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为87。** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为87%。** 
 
 - 5）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为所有图像，10670张图像，val为1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_1300_256x256*。
 
@@ -226,23 +224,29 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
             loss(val): 0.41532
             loss(train): 0.353224
            
-    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为86.0769。** 
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为86.0769%。** 
+
+- 6）通过比较1），2），3）与4），可知虽然正确率不断上升，但是实际情况是训练样本逐渐增多，测试样本逐渐减少，偶然性也增大，其结果说服力不足。2）与3）的数据相对4）而言更有说服力，其中3）的正确率也接近85%，但是结果是否可信，仍需确认。
+
+- 7）比较4）与5），二者训练样本数量最为接近，接近最大，不同的是5）的测试样本比4)多出许多，但是5）中的测试样本几乎就是从训练样本中提取出的，可以理解为“训练样本验证训练样本”，所以虽然二者正确率高达87%，但是说服力不足。
+
+- PS：原本想通过`./bulid/tools/caffe test`指令，通过替换测试图像的方法，来测试DIGITS训练模型的accuracy。但是，发现DIGITS模型中，所使用的图像来源于DIGITS自身创建的数据。而修改`source`路径，设置为用`imagenet_convert`创建的lmdb数据，则无法得出应有的正确率。即**DIGITS创建数据与训练模型，与caffe命令行创建数据与训练模型，无法完全兼容**。因此，DIGITS与caffe命令行，应该分别完成训练与测试的流程，不要混合使用。
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
 ### CaffeNet（单通道）
 
-#### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
+#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-#### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
 ### GoogleNet（单通道）
 
-#### 训练图像9460张（训练集）+ 测试图像1300张（测试集）
+#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
-#### 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
@@ -264,7 +268,8 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
     
             accuracy: 0.8436
             loss:0.964256
-
+	 
+	 该实验中，训练集与测试集独立，因此所得**正确率具有说服力，并且也是accuracy最高的**。实验的主要方向应该放在完成这部分finetune工作上。
 
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
@@ -274,6 +279,8 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
     
             accuracy: 0.8776
             loss:0.503431
+            
+    虽然该实验的accuracy达到了87.76，但是其训练图像为所有10670张图像，而测试图像为其中一部分。所以，该accuracy仅供参考。
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 

@@ -268,6 +268,12 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
+- 数据集为*Zooplankton_3Channel_Origin_Train_all_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为10670 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*Finetune_ZooplanktoNet_3Channel_Origin_Train_all_Test_1300_256x256*。迭代次数为20000次。
+
+    **Result:**
+    
+            accuracy: 0.8776
+            loss:0.503431
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 

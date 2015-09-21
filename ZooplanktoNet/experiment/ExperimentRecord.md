@@ -2,7 +2,7 @@
 
 ZooplanktoNet相关实验记录
 
-## Train
+## 数据说明
 
 在create_imagenet.sh，只有"Create train lmdb"与"Create val lmdb"两个选项，而ImageNet总有train, val与test三个数据集。
 
@@ -119,7 +119,7 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
            
     **accuracy(val)，loss(val)与loss(train)曲线波动变化正常** 
     
- - 3) 由1）和2）可知，比较val选项为*1300 images*与*25%的train图像*时，其accuracy几乎相等。但是通过`./build/tools/caffe test`来检测所训练模型的准确率，其中：
+- 3) 由1）和2）可知，比较val选项为*1300 images*与*25%的train图像*时，其accuracy几乎相等。但是通过`./build/tools/caffe test`来检测所训练模型的准确率，其中：
  
     - 1)的网络模型*AlexNet_1Channel_Origin_Train_9460_Val_1300_256x256*的结果：
     
@@ -248,9 +248,6 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
 
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
-
-
 
 ## Finetune
 
@@ -284,7 +281,7 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
-### GoogleNet
+### AlexNet
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
@@ -292,7 +289,11 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
+### Ohter Models
+
 ### 单通道pre-trained模型
+
+由于目前在[Model Zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo)里所提供的pretrained model都是基于三通道图像的，因此其卷积参数也是三通道的，所以不适用于单通道图像。因此，**在这里暂不讨论单通道pre-trained模型的finetune。**但是，三通道模型的正确率，与单通道模型的accuracy几乎相同，除了参数数量较多外，没具体差别。
 
 
 ## Other Work

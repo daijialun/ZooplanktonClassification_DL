@@ -81,6 +81,8 @@ LeNet是训练MNIST数据的网络模型，默认情况下，其图像size设置
 
 AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置为256x256，通道数为3，但是由于zooplankton是单通道图像，因此在这使用AlexNet，只使用grayscale通道。另外，实验可分为2组：（1）train_9460，val_1300；（2）train_9460，val_25。通过以下实验，**确认AlexNet网络性能**，以及**创建数据时，Val设置为25%或1300 images，对正确率的影响**。
 
+实验环境为*DIGITS*。
+
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
 - 1) 数据集为*Zooplankton_1Channel_Origin_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为9460张，val为1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_9460_Val_1300_256x256*。
@@ -134,6 +136,8 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
     通过以上实验，可以得出，对两种val选项的设置，其正确率基本相同。但是推荐使用**Train_9460，Val_1300，无Test**。
            
 #### 2. 训练图像9460+1300张（训练集+测试集） + 不同比例测试图像（测试集）
+
+实验环境为*DIGITS*。
 
 - 1）数据集为*Zooplankton_1Channel_Origin_Train_all_Val_25_256x256*，表示原始数据集为Zooplankton，通道数为1，图像未处理(origin)，train输入为10760张图像，实际训练图像8073张；val为25%，2687张，image size为256x256。所训练的模型为*AlexNet_1Channel_Origin_Train_all_Val_25_256x256*。
 
@@ -234,19 +238,51 @@ AlexNet是训练ILSVRC2012竞赛的网络模型，默认情况下，图像设置
 
 #### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
-### CaffeNet（单通道）
+- 5）数据集为*Zooplankton_1Channel_Square_Train_9460_Val_1300_256x256*，表示原始数据集为Zooplankton，通道数为1，图像只取中心位置（Square），train输入为训练图像，9460张，val为测试图像，1300张，image size为256x256。所训练的模型为*AlexNet_1Channel_Square_Train_9460_Val_1300_256x256*。
+
+    **dataset:**
+ 
+            Image Size: 256x256
+            Image Type: GRAYSCALE
+            Create DB(train): 9460 images
+            Create DB(val): 1300 images
+            Encoding: png 
+        
+    **Result:**
+
+	        accuracy(val): 78.6154%
+            loss(val): 0.676773
+            loss(train): 0.266656
+           
+    **accuracy(val)，loss(val)与loss(train)曲线波动变化正常。accuracy最高时为78.6154%。** 
+    
+    由于AlexNet在第一层卷积之前，对数据进行了预处理，在256x256的图像中，提取227x227的patches，即提取图像的一部分进行处理，与取中心处理方法类似。因此，对训练图像进行取中心处理效果几乎没有提升。
+
+
+
+### CaffeNet（三通道）
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
+- 数据集为*Zooplankton_3Channel_Origin_Train_9460_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为9460 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*CaffeNet_ZooplanktoNet_3Channel_Origin_Train_9460_Test_1300_256x256*。迭代30,000次。
+
+    **Result:**
+    
+            accuracy: 0.8016
+            loss:0.151577
+            
+    其数据集是用*create_imagenet.sh*与*make_zooplanktonet_mean.sh*创建的，通过*命令行*使用训练的。
+
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
+- 数据集为*Zooplankton_3Channel_Origin_Train_9460_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为9460 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*CaffeNet_ZooplanktoNet_3Channel_Origin_Train_9460_Test_1300_256x256*。迭代12,000次。
 
-### GoogleNet（单通道）
-
-#### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
-
-#### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
+    **Result:**
+    
+            accuracy: 0.847242
+            loss:0.970374
+            
+    其数据集是用*DIGITS*创建的，通过*命令行*使用训练的。由于测试是训练集中的一部分，其正确率虽然有84%，但是却不具有代表性与独立性，仅供参考。
 
 
 ## Finetune
@@ -270,7 +306,7 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
-- 数据集为*Zooplankton_3Channel_Origin_Train_all_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为10670 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*Finetune_ZooplanktoNet_3Channel_Origin_Train_all_Test_1300_256x256*。迭代次数为20000次。
+- 数据集为*Zooplankton_3Channel_Origin_Train_all_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为10670 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*Finetune_CaffeNet_3Channel_Origin_Train_all_Test_1300_256x256*。迭代次数为20,000次。
 
     **Result:**
     
@@ -285,9 +321,17 @@ CaffeNet的finetune过程，主要使用**命令行**完成。
 
 #### 1. 训练图像9460张（训练集）+ 测试图像1300张（测试集）
 
+- 数据集为*Zooplankton_3Channel_Origin_Train_9460_Test_1300_256x256*，表示原始数据集为Zooplankton，通道数为3，图像未处理（origin），train输入为9460 images，test输入为1300 images，图像size为256x256。所finetune训练的模型为*Finetune_AlexNet_3Channel_Origin_Train_9460_Test_1300_256x256*。迭代16,000次。
+
+    **Result:**
+    
+            accuracy: 0.8512
+            loss: 1.0737
+	 
+	 该实验中，训练集与测试集独立，因此所得**正确率具有说服力，并且也是accuracy最高的**。实验的主要方向应该放在完成这部分finetune工作上。
+
 #### 2. 训练图像9460+1300张（训练集+测试集） + 测试图像1300张（测试集）
 
-#### 3. 训练图像（取中心处理）9460张（训练集）+ 测试图像（取中心处理）1300张（测试集）
 
 ### Ohter Models
 

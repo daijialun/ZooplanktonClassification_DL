@@ -134,6 +134,10 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 - 矢量化编程是提高算法速度的有效方法：提升特定数值运算操作（矩阵乘加等）的速度，强调单一指令并行操作多条相似数据，形成单指令流的编程泛型
 
+- Python运行目录应该在`caffe-master/python/caffe/`下
+
+- Caffe官网中的`Image Classification and Filter Visualization`例子中，可将全部代码写在一个.py文件中，文件放置于`caffe-master/examples`，而终端运行目录在`caffe-master/python/caffe/`下。注意在`plt.imshow()`后加上`plt.show()`，否则无法显示图像。
+
 
 
 

@@ -138,21 +138,7 @@ caffe中例子主要位于data, example和models，因此使用过程中，主�
 
 - Caffe官网中的`Image Classification and Filter Visualization`例子中，可将全部代码写在一个.py文件中，文件放置于`caffe-master/examples`，而终端运行目录在`caffe-master/python/caffe/`下。注意在`plt.imshow()`后加上`plt.show()`，否则无法显示图像。
 
+- 由于VGG16层数较多，而显卡的显存只有6G，对于batch_size的设置不能太大，否则将显示OUT_MEMORY状态。只能将batch_size设置为10或20。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Machine Learning中 :=表示overwirte该值，即a:=a+1表示用将a+1写入a中；=表示判断相等，明显a=a+1是错误的
 
